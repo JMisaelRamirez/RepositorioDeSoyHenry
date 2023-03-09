@@ -185,3 +185,45 @@ Existen lenguajes de alto y bajo nivel que luego deben ser traducidos a lenguaje
 ## Homework
 
 Completa la tarea descrita en el archivo [README](https://github.com/soyHenry/FT-M1/tree/master/01-IntroToCS/homework)
+
+# NOTAS
+## Git y GitHub
+### Esquema de trabajo
+
+![EsquemaDeTrabajo](../_src/assets/01-IntroToCS/esquema1.png)
+
+
+> JavaScript no difiere en el tipo de dato
+
+> Si se multiplica un string con un numero da omo resuldado un numero. 
+
+# **COMANDOS ADICIONALES**
+> ## **Comando split()**
+ **Def:** El split descompone el valor asociado a el de la  forma que se indique en el argumento. **No se puede hacer split a un numero, solamente a un string**.
+
+**Ejem. 1:**
+
+    '1010'.split('');
+    output: ['1', '0', '1', '0']
+    // Separa el numero 1010 en un array con los mismos valores
+
+**Ejem. 2:**
+
+    'hola'.split('o');
+    output: ['h', 'l', 'a']
+
+>## **Comando Number()**
+**Def:** Convierte un numero de string a un numero. 
+
+**Ejem. 1:**
+
+    Number('5');
+    Output: 5
+
+>## **Comando join()**
+**Def:** Uni los valores de un arreglo, lo convierte en un string. 
+
+**Ejem. 1:**
+
+    array.join('') // Donde array = [1,0,1,0]
+    output: '1010'
