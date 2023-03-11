@@ -40,11 +40,26 @@ output: 'Tony'
 ```
 Esto es debido a que _let_ nace y muere entre llaves _({})_.
 
-## Diferencia entre let y var
+### Diferencia entre let y var
 Cuando se ejecuta el programa y se crea el contexto global, las variables definidas con _let_ no se guardan como un metodo(propiedad) en el objeto this y, por otro lado, cuando se utiliza _var_ siempre se mantendra en memoria este registro de la variable.
 
 > **IMMEDIATE FUNCTIONS**
 
 Las funciones inmediatas se ejecutan luego luego, ademas de que tambien pueden ser llamadas despues. Se escriben entre parentesis (function _funcion_(){})();
+
+> **parseInt()**
+
+Es muy similar al comando _number()_, solo que, _parseInt()_ convierte un string a un numero completamente entero. Si se ha de convertir un numero flotante de tipo string, este se redondeara al entero menor. 
+
+>**boolean()**
+
+Calcula el numero booleano de un numero.
+
+# **NOTAS RAPIDAS**
+
+>1. boolean([]) -> true
+>2. boolean(![]) -> false
+>3. [] == ![] -> true // Ambos son booleans? -> si
+>4. [] === ![] -> false // Ambos son booleans y del mismo tipo? -> no
 
 
