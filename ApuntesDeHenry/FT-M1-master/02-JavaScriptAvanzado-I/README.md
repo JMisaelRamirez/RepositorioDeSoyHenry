@@ -39,6 +39,8 @@ JavaScript es __Single Threaded__ y sincrónico, es decir que sólo puede hacer 
 
 Un programa que lee tu código y determina qué hace y si su sintaxis es válida. Si todo está bien se generá código legible por la computadora que luego es ejecutado como instrucciones. Lo importante de esto, es que el intérprete  además puede agregar ciertos comportamientos extras, vamos a ver algunas de esas cosas extras que el intérprete maneja por nosotros.
 
+> CP: Es el que nos indica cuando aya un error. 
+
 ## Lexical Environment
 
 El lexical environment tiene que ver con _dónde_ están declarados ciertos statements o expresiones en tu código. Es decir, el comportamiento de JavaScript puede cambiar según dónde hayas escrito el código.
@@ -50,6 +52,16 @@ function hola() {
 
 var bar = 'Chao';
 ```
+> CP: El Lexical Enviroment, da a conocer donde esta declarada cada informacion. Observando el siguiente codigo: 
+```js
+function hola() {
+  var foo = 'Hola!';
+  var bar = 'bar';
+}
+
+var bar = 'Chao';
+```
+> Se observa que la variable bar esta en la zona de la funcion y en la zona global, por lo tanto, se denominan funciones diferentes. Esta en un Lexical Enviroment diferente.
 
 Por ejemplo, para el intérprete las dos declaraciones de variable del arriba tendrán significados muy distintos. Si bien la operación es igual en los dos (asignación) al estar en lugares distintos (una dentro de una función y la otra no) el intérprete las parseará de forma distinta.
 
@@ -59,13 +71,32 @@ Por ejemplo, para el intérprete las dos declaraciones de variable del arriba te
 
 El contexto de ejecución contiene información sobre _qué_ código se está ejecutando en cada momento. Además de mantener el código que tiene que ejecutar, también mantiene más información sobre desde dónde se invocó ese código, en qué lexical enviroment está, etc...
 
+> CP: Es importante saber que todo lo que se ejecute en JS se va a ejecutar en un contexto de ejecucion, todo!. Si se tiene el siguiente codigo:
+```js
+console.log('hola');
+```
+>CP: Este se ejecutara en un contexto de ejecucion.
+El Execution Enviroment tiene 2 fases, uno de creacion y una de ejecucion:
+>
+> **Fase de creacion**
+>1. Leer todo el codigo. En este paso reserva espacio de memoria para guardar las variables y funciones definidas. No agina los valores de la varibales(no asigna ningun valor), solo reserva los espacios y el datos de cada variables los establece como "undefined". Para el caso de las funciones, este guarda toda la a funcion Ej: function nombre(){....}, copia toda la funcion, esto debido a que JS maneja las funciones como objetos. 
+>
+> **Ejecucion**
+> 1. Empieza a leer el codigo nuevamente, si se encuentra que las variables contenian un valor, este las empieza a asignar. 
+> 2. Posteriormente,procede analisar el codigo, si se encuentra que una variable esta definida como una ejecucion de una funcion, este nuevamente crea un nuevo contexto de ejecucion (FASE DE CREACION) y nuemvamente, se rraliza la ejecucion el cual define los valores undefined. En cuanto se encuentre con un return, el contexto de ejecucion se elimina. 
+
+**Eliminacion del conxtexto de ejecucion**
+De de seguir con el proceso de ejecuion, el proceso se encuentra que ya no hay nada ,as que ejecutar, por lo tanto, elimina el contexto de ejecucion al terminar con su tarea. 
+>
+>CPS: Si no se aclara se trabaja en un contexto de ejecucion global (se vera mas adelante como se aclara). En el encontraremos informacio de que variables estan definidas, incluso, invocaciones, todo lo que esta definido en nuestro archivo. Va a tener un objeto que va a representar al contexto llado this. Por lo tanto: Lexical -> Donde y Execution context -> que
+
 ### Global Enviroment
 
 Cada vez que ejecutamos algo en JavaScript __se corre dentro de un contexto de ejecución__. Como todo el código corre en un contexto, si no especificamos ese contexto (veremos cómo se hace despues) entonces el código se va a ejecutar en el __contexto global__, que es el contexto de base que nos crea automáticamente el interprete.
 
 > Básicamente, vamos a decir que es __global__ cualquier bloque de código que no esté declarado dentro de una función.
 
-Además de ejecutar el código que le pasemos, también crea un __objeto global__ y además crea una variable llamada __this__. Por ejemplo, si usamos el engine de javaScript de Chrome ( este es el intérprete ), y vamos a la consola vamos a ver que el _objeto global_ que mencionamos el es objeto `window` y que la variable `this` hace referencia a ese objeto. Esos objetos los generó el interprete cuando creó el ambiente de ejecución. Si abro otra pestaña voy a tener otro objeto `window` similar, ya que es otro contexto de ejecución.
+Además de ejecutar el código que le pasemos, también crea un __objeto global__ y además crea una variable llamada __this__. Por ejemplo, si usamos el engine de javaScript de Chrome ( este es el intérprete ), y vamos a la consola vamos a ver que el _objeto global_ que mencionamos el es objeto `window` y que la variable `this` hace referencia a ese objeto. Esos objetos los generó el interprete cuando creó el ambiente de ejecución. Si abro otra pestaña voy a tener otro objeto `window` similar, ya que es otro contexto de ejecución, y dependiendo de donde se ejecute el contexto, este creara su propio entorno de contexto, osea la syntaxys del contexto. 
 
 ![no-box](../_src/assets/02-JavaScriptAvanzado-I/context.jpg)
 
@@ -95,7 +126,7 @@ function bar() {
 }
 ```
 
-En otros lenguajes, si intentaramos invocar una función o una variable que está definida _'más abajo'_ seguramente tendríamos un error. Pero JavaScript, al realizar el proceso de `hoisting`, ya tiene reservado el espacio para esas variable y funciones, por lo tanto no se genera un error. Notesé que a la función la pudo ejecutar, esto quiere decir que durante el hoisting guardó su contenido también, no sólo reservó el espacio. Pero con el caso de la variable, sólo reservo el espacio, ya que cuando hacemos el `console.log` vemos que contiene `undefined`.
+En otros lenguajes, si intentaramos invocar una función o una variable que está definida _'más abajo'_ seguramente tendríamos un error. Pero JavaScript, al realizar el proceso de `hoisting`, ya tiene reservado el espacio para esas variable y funciones, por lo tanto no se genera un error (Esto aplica unicamente para las variables de tipo _var_ y las _functions_, para los _const_ y _let_ no funciona. ). Notesé que a la función la pudo ejecutar, esto quiere decir que durante el hoisting guardó su contenido también, no sólo reservó el espacio. Pero con el caso de la variable, sólo reservo el espacio, ya que cuando hacemos el `console.log` vemos que contiene `undefined`.
 
 > Podemos pensar el Hoisting como que el interprete '_mueve_' las declaraciones a la parte de már arriba de nuestro código. Sólo lo hace con las declaraciones y no con las inicializaciones.
 
@@ -364,7 +395,7 @@ Hay dos formas de pasar variables en cualquier lenguaje de programación, en alg
 
 Las dos formas son, por valor o por referencia. Veamos la siguiente animación:
 
-![ValueReference](http://i.stack.imgur.com/QdcG2.gif)
+![ValueReference](../_src\assets\02-JavaScriptAvanzado-I\valorOReferencia.gif)
 
 Cuando pasamos algo por referencia, estamos pasando una _referencia_ o un puntero al objeto. Por lo tanto, cualquier cambio que hagamos a esa referencia, se va a ver reflejado en el objeto original. En el ejemplo, pasamos una referencia a la taza y en nuestra función la llenamos de café. Al ser una referencia al objeto `cup`, vemos que se ve reflejado el cambio en ella (se llena de café) ya que son el __mismo__ objeto!.
 
@@ -555,3 +586,49 @@ De esta forma, tenemos acceso al objeto global y estamos protegidos de cualquier
 ## Homework
 
 Completa la tarea descrita en el archivo [README](https://github.com/soyHenry/FT-M1/tree/master/02-JavaScriptAvanzado-I/homework)
+
+# APUNTES ADICIONALES
+## Event Loop
+![EventLoop](../_src\assets\02-JavaScriptAvanzado-I\EventLoop.JPG)
+
+JavaScript podee un mmodelo de concurrencias basado en un "loop de eventos". Este modelos es bastante diferente al modelo de otros leguajes como C o Java. 
+### Conceptos de un programa en ejecucion.
+
+Las siguientes secciones explican un modelo teorico. Los motores modernos de JavaScript implementan y optimizan fuertemente la sematica descrita a continuacion. La siguiente imagen muestra la representacion:
+
+![Loup.com](../_src\assets\02-JavaScriptAvanzado-I\loupDotCom.JPG)
+
+**Ejemplo1. :**
+
+```js
+function saludarMasTarde(){
+  var saludo = "Hola Buneas tardes";
+  setTimeout( function saludo(){
+    console.log(saludo);
+  },3000)
+}
+
+saludarMasTarde();
+```
+Explicacion: En primer lugar se ejecuta la instruccion _saludarMasTarde()_ dentro del _Call Stack_, posteriormente, se ejecuta la instruccion setTimeout(func...){..., 3000} arriba del stack, y despues el programa se dio cuenta que es algo que el no podia trabajar al contener un tiempo de espera, por lo tanto, lo direcciono al Web Apis (El Web Apis, al terminar de ejecutar las instrucciones que le fueron asignadas, las direcciona a una cola llamada _Callback Queue_ y en forma paralela se seguiran ejecutando las instrucciones de la zona Call Stack) en cuanto se teminen los porcesos del Call Stack se ejecutaran llos procesos del Call Back.
+
+
+
+# COMANDO EXTRAS
+
+> <>
+
+Este simbolo indica "totalmente vinculado"
+
+> Comando alert()
+
+**Ejem. 1:**
+    
+    kdj
+
+# **PREGUNTAS - DUDAS**
+
+¿Donde encuentro dentro de la consola la opcion para selecionar el entorno de javascrip asi como el video de Henry?
+
+![ThisSinTruco](../_src\assets\02-JavaScriptAvanzado-I\ThisSinTruco.JPG)
+![ThisConTruco](../_src\assets\02-JavaScriptAvanzado-I\ThisConTruco.JPG)

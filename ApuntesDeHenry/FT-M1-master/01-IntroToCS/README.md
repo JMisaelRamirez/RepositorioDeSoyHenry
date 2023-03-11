@@ -221,9 +221,18 @@ Completa la tarea descrita en el archivo [README](https://github.com/soyHenry/FT
     Output: 5
 
 >## **Comando join()**
-**Def:** Uni los valores de un arreglo, lo convierte en un string. 
+**Def:** Une los valores de un arreglo y lo convierte en un string. 
 
 **Ejem. 1:**
 
     array.join('') // Donde array = [1,0,1,0]
     output: '1010'
+
+>## **Comando (objecto).toString();**
+**Def:** Convierte un numero cualquiera en string. 
+
+**Ejem. 1:**
+
+    (100).toString();
+    output: '100'
+
