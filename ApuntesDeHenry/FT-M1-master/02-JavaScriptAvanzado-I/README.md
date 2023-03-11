@@ -395,7 +395,7 @@ Hay dos formas de pasar variables en cualquier lenguaje de programación, en alg
 
 Las dos formas son, por valor o por referencia. Veamos la siguiente animación:
 
-![ValueReference](../_src\assets\02-JavaScriptAvanzado-I\valorOReferencia.gif)
+![ValueReference](../_src/assets/02-JavaScriptAvanzado-I/valorOReferencia.gif)
 
 Cuando pasamos algo por referencia, estamos pasando una _referencia_ o un puntero al objeto. Por lo tanto, cualquier cambio que hagamos a esa referencia, se va a ver reflejado en el objeto original. En el ejemplo, pasamos una referencia a la taza y en nuestra función la llenamos de café. Al ser una referencia al objeto `cup`, vemos que se ve reflejado el cambio en ella (se llena de café) ya que son el __mismo__ objeto!.
 
@@ -589,14 +589,14 @@ Completa la tarea descrita en el archivo [README](https://github.com/soyHenry/FT
 
 # APUNTES ADICIONALES
 ## Event Loop
-![EventLoop](../_src\assets\02-JavaScriptAvanzado-I\EventLoop.png)
+![EventLoop](../_src/assets/02-JavaScriptAvanzado-I/EventLoop.png)
 
 JavaScript podee un mmodelo de concurrencias basado en un "loop de eventos". Este modelos es bastante diferente al modelo de otros leguajes como C o Java. 
 ### Conceptos de un programa en ejecucion.
 
 Las siguientes secciones explican un modelo teorico. Los motores modernos de JavaScript implementan y optimizan fuertemente la sematica descrita a continuacion. La siguiente imagen muestra la representacion:
 
-![Loup.com](../_src\assets\02-JavaScriptAvanzado-I\loupDotCom.JPG)
+![Loup.com](../_src/assets/02-JavaScriptAvanzado-I/loupDotCom.JPG)
 
 **Ejemplo1. :**
 
@@ -630,5 +630,5 @@ Este simbolo indica "totalmente vinculado"
 
 ¿Donde encuentro dentro de la consola la opcion para selecionar el entorno de javascrip asi como el video de Henry?
 
-![ThisSinTruco](../_src\assets\02-JavaScriptAvanzado-I\ThisSinTruco.JPG)
-![ThisConTruco](../_src\assets\02-JavaScriptAvanzado-I\ThisConTruco.JPG)
+![ThisSinTruco](../_src/assets/02-JavaScriptAvanzado-I/ThisSinTruco.JPG)
+![ThisConTruco](../_src/assets/02-JavaScriptAvanzado-I/ThisConTruco.JPG)
