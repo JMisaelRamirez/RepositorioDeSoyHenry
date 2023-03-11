@@ -589,7 +589,7 @@ Completa la tarea descrita en el archivo [README](https://github.com/soyHenry/FT
 
 # APUNTES ADICIONALES
 ## Event Loop
-![EventLoop](../_src\assets\02-JavaScriptAvanzado-I\EventLoop.JPG)
+![EventLoop](../_src\assets\02-JavaScriptAvanzado-I\EventLoop.png)
 
 JavaScript podee un mmodelo de concurrencias basado en un "loop de eventos". Este modelos es bastante diferente al modelo de otros leguajes como C o Java. 
 ### Conceptos de un programa en ejecucion.
