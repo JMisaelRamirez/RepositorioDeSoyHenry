@@ -61,5 +61,6 @@ Calcula el numero booleano de un numero.
 >2. boolean(![]) -> false
 >3. [] == ![] -> true // Ambos son booleans? -> si
 >4. [] === ![] -> false // Ambos son booleans y del mismo tipo? -> no
+>5.
 
 
