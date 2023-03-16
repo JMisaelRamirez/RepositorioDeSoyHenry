@@ -195,7 +195,7 @@ b(); // 'Chao'
 console.log(global); // 'Hello'
 ```
 
-Para esto vamos a introducir el término `scope`, este es **el set de variable, objeto y funciones al que tenemos acceso en determinado contexto**. En el ejemplo anterior, la variable `global` está definida en dos `scopes` distintos, uno es el `scope global` y el otro es el `scope` de la función `b`, esto quiere decir que, a pesar de tener el mismo nombre, estas dos variables son distintas.
+Para esto vamos a introducir el término `scope (alcance)`, este es **el set de variable, objeto y funciones al que tenemos acceso en determinado contexto**. En el ejemplo anterior, la variable `global` está definida en dos `scopes` distintos, uno es el `scope global` y el otro es el `scope` de la función `b`, esto quiere decir que, a pesar de tener el mismo nombre, estas dos variables son distintas.
 
 Justamente, cuando JavaScript no encuentra una variable en su scope, lo que hace es buscar en otros scopes (de contextos que esten en la referencia de `outer contexts`). A esta búsqueda en distintos scope se la conoce como __the scope chain__, ya que el intérprete busca en cadena scope por scope por el nombre de la variable, hasta llegar al scope global. Noten que el `outer enviroment` no es necesariamente el contexto que esté debajo en la pila de ejecucción, ni tampoco el contexto en donde se invocó la función, si no __es el contexto en donde se definió la función!__ (Se acuerdan que dijimos que en javascript el _lexical enviroment_ era importante?).
 
@@ -591,12 +591,16 @@ Completa la tarea descrita en el archivo [README](https://github.com/soyHenry/FT
 ## Event Loop
 ![EventLoop](../_src/assets/02-JavaScriptAvanzado-I/EventLoop.png)
 
-JavaScript podee un mmodelo de concurrencias basado en un "loop de eventos". Este modelos es bastante diferente al modelo de otros leguajes como C o Java. 
-### Conceptos de un programa en ejecucion.
+JavaScript tiene una ejecucion sincrona y secuencial, es decir, se ejecuta una sola linea de codigo y, en cuanto termina la ejecucion pasa a la siguiente linea de codigo hasta que aparece una linea con alguna funcion asincrona, por lo que Event Loop se encarga de ejecutar las ejecuciones asincronas. 
+El event loop es parte del motor de la implementacion de JavaScript. Se puede llevar acabo la asincronia de JS gracias al sistema del event loop.
+
+### Representacion de Event Loop
 
 Las siguientes secciones explican un modelo teorico. Los motores modernos de JavaScript implementan y optimizan fuertemente la sematica descrita a continuacion. La siguiente imagen muestra la representacion:
 
 ![Loup.com](../_src/assets/02-JavaScriptAvanzado-I/loupDotCom.JPG)
+
+La imagen anterior muestra la Call Stack (Pila -> First In Last Out) y el CallBack Queue (Cola -> First In First Out)
 
 **Ejemplo1. :**
 

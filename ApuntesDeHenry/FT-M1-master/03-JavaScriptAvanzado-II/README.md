@@ -23,7 +23,7 @@
 
 #### Avanzado II
 
-## Closures
+## Closures (calusulas o Funciones de Cierre)
 
 Otro tema importante en JavaScript es `closures`. Veamos a que se refieren con un ejemplo:
 
@@ -101,7 +101,24 @@ arr[0]() // 1
 arr[1]() // 2
 arr[2]() // 3
 ```
+> CP: Loq ue esta pasando en el codigo anterior, es que se entan guardando varias funciones en un arreglo. 
 
+> CP:El ejemplo anterior tiene un apartado,
+```javascript
+      (function(j){
+        return function() {console.log(j);}
+      }(i))
+ 
+```
+>CP:Que seria igual a escribir:
+
+```javascript
+      function extra(j){
+        console.log(j);
+      }
+      extra(i)
+```
+>CP: La diferencia es, que en el primer ejemplo la funcion se ejecuta de forma instantanea "Es una funcion instantanea" se invoca por si sola y la otra se debe de invocar. En el primer ejemplo el _(i)_ indica el parametro que se guardara en la cariable _j_.
 ### Function Factory
 
 Vamos a ver un patrón para crear funciones, muy usado en el desarrollo de frameworks, y que existe gracias a los _closures_.

@@ -2,7 +2,22 @@
 
 // Closures
 
-function counter() {
+//CODIGO MISAEL
+////////////////////////////////////
+function counter(){
+  var value = 1;
+  return function(){
+    console.log(value ++)
+  }
+}
+
+var counterFunction = counter();
+//counterFunction(); // COn este codigo se manda a llamar la funcion
+////////////////////////////////////
+
+// CODIGO AMIGO
+////////////////////////////////////
+/*function counter() {
  
   let num = 0;
 
@@ -16,7 +31,8 @@ function counter() {
 const count = counter();
 count()
 count()
-console.log(count())
+console.log(count())*/
+////////////////////////////////////////
   /*
   Ejercicio 1
 
@@ -34,7 +50,34 @@ console.log(count())
   otroContador()      // 3
    */
 
+  /*
+  Ejercicio 2
 
+  Tu tarea aquí es lograr, mediante un closure, que cacheFunction actúe como una memoria caché para el callback que recibe por parámetro (cb); es decir, que "recuerde" el resultado de cada operación que hace, de manera que, al realizar una operación por segunda vez, se pueda obtener el resultado de esa "memoria" sin tener que efectuar otra vez cálculos que ya se hicieron anteriormente.
+
+  cacheFunction debe retornar una función. Esta función debe aceptar un argumento (arg) e invocar a cb con ese argumento; hecho eso, debe guardar el argumento junto con el resultado de la invocación (tip: usá un objeto donde cada propiedad sea el argumento, y su valor el resultado de la correspondiente invocación a cb) de manera que, la próxima vez que reciba el mismo argumento, no sea necesario volver a invocar a cb, porque el resultado estará guardado en la "memoria caché".
+*/
+
+//////////////////////////////////////////////////
+function cacheFunction(cb) {
+  var cache = {};
+  
+  return function(arg) {
+    if(cache.hasOwnProperty(arg)) {
+      return chache[arg];
+    } else {
+      cache[arg] = cb(arg);
+      return cache[arg];
+    }  
+  }
+}
+
+
+
+
+/////////////////////////////////////////////////
+
+/*
 function cacheFunction(cb) {
   var obj = {};
 
@@ -47,14 +90,9 @@ function cacheFunction(cb) {
     return obj[arg];
    }
   }
-
+*/
   /*
-  Ejercicio 2
-
-  Tu tarea aquí es lograr, mediante un closure, que cacheFunction actúe como una memoria caché para el callback que recibe por parámetro (cb); es decir, que "recuerde" el resultado de cada operación que hace, de manera que, al realizar una operación por segunda vez, se pueda obtener el resultado de esa "memoria" sin tener que efectuar otra vez cálculos que ya se hicieron anteriormente.
-
-  cacheFunction debe retornar una función. Esta función debe aceptar un argumento (arg) e invocar a cb con ese argumento; hecho eso, debe guardar el argumento junto con el resultado de la invocación (tip: usá un objeto donde cada propiedad sea el argumento, y su valor el resultado de la correspondiente invocación a cb) de manera que, la próxima vez que reciba el mismo argumento, no sea necesario volver a invocar a cb, porque el resultado estará guardado en la "memoria caché".
-
+  
 
   Ejemplo:
   function square(n){
@@ -66,11 +104,40 @@ function cacheFunction(cb) {
   squareCache(5)    // invocará a square(5), almacenará el resultado y lo retornará
   squareCache(5)    // no volverá a invocar a square, simplemente buscará en la caché cuál es el resultado de square(5) y lo retornará (tip: si usaste un objeto, podés usar hasOwnProperty) 
 
-  */
+  
 }
+*/
+/*
+  Ejercicio 3
+
+  IMPORTANTE: no modificar el código de arriba (variables instructor y alumno, y función getNombre)
+
+  Usando el método bind() guardar, en las dos variables declaradas a continuación, dos funciones que actúen como getNombre pero retornen el nombre del instructor y del alumno, respectivamente.
+*/
 
 // Bind
+// Codigo Misael
+/////////////////////////////////////////////
+var instructor = {
+  nombre: "Franco",
+  edad: 25,
+};
 
+var alumno = {
+  nombre: "Juan",
+  curso: "FullStack"
+
+}
+
+function getNombre(){
+  return
+}
+
+let getNombreInstructor = getNombre.bind(instructor);
+let getNombreAlumno = getNombre.bind(alumno);
+
+/////////////////////////////////////////////
+/*
 var instructor = {
   nombre: "Franco",
   edad: 25,
@@ -84,17 +151,13 @@ var alumno = {
 function getNombre() {
   return this.nombre;
 }
-
-/*
-  Ejercicio 3
-
-  IMPORTANTE: no modificar el código de arriba (variables instructor y alumno, y función getNombre)
-
-  Usando el método bind() guardar, en las dos variables declaradas a continuación, dos funciones que actúen como getNombre pero retornen el nombre del instructor y del alumno, respectivamente.
-*/
-
 let getNombreInstructor= getNombre.bind(instructor);
 let getNombreAlumno= getNombre.bind(alumno);
+*/
+
+
+
+
 
 /*
   Ejercicio 4
