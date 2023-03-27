@@ -84,7 +84,6 @@ var logNombre = function(){
 En este ejemplo, vamos a usar el keyword `this` para invocar el método del objeto persona. Como verán, el código de arriba produce un error, ya que cuando ejecutamos `logNombre()`, el `this` que está adentro hace referencia al objeto global, y ese objeto no tiene un método `getNombre`.
 
 ```javascript
-
 var logNombrePersona = logNombre.bind(persona);
 logNombrePersona();
 ```
@@ -274,7 +273,7 @@ Es un metodo que nos permite saber si al objeto que asignamos tiene esa propieda
 >4. [] === ![] -> false // Ambos son booleans y del mismo tipo? -> no
 >5. persona[arg] = cb(arg) ---> Asi se guarda una propiedad y su valor en un arreglo. El comando anterior (persona[arg]) nos indica que se guardara una propiedad llamada arg, o lo que contenga la variable arg, en el objeto persona, y su valor sera lo regrese la funcion cb(arg).
 >6. La diferencia entre console.log(persona.arg) o console.log(persona[arg]) --> La diferencia es la forma en la que el programa lee el comando. El primer comando el interprete lo lee como: imprimir el valor de la propiedad con la palabra arg. El segundo lo lee como: Imprimir el valor de la propiedad de la variable arg, el cual, la variable arg es un string con un nombre que desconocemos. **Un comando interpreta la texto _arg_ como el nombre del objeto y el otro como una variable _que contiene un estring en ella osea, otro nombre_**.
-> 
+> 7. Para limitar a un objeto de utilizar ciertos metodos, por ejemplo un array, se utilizan las clases y se agregan en la clase unicamnete los metodos que se quedran utilizar y dejar  aun lado los otros. 
 
 
 

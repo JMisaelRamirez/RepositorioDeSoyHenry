@@ -1,12 +1,33 @@
 
 # **APUNTES**
-># **ESTRUCTURA DE DATOS 1**
+## **RECURSION**
 
-> # Recursion
+Una recursion, es cuando una funcion invica a su misma funcion. Se aplica a problemas que requieren ejecutar la misma funcion hasta llegar a una condicion: 
+
+``` javascript
+  function recursiva(num) {
+    
+    // planteamos un caso base que cuando llegue a este retorne un valor
+    if(`caso base`) return
+
+    // acá pondríamos que operación se tendría que repetir, puede ser tan
+    // simple como puedan imaginar o increíblemente compleja
+    c = a + b
+
+    // una vez realizada la operación lo que queda es repetirla hasta llegar
+    // al caso base, entonces necesitamos una `llamada recursiva`.
+    return recursiva(c)
+    // y finalmete retornaria el resultado que vayamos devolviendo
+  }
+```
+
+## **ESTRUCTURA DE DATOS 1**
+
+> ### Recursion
 
 Se podria decir que una recursion es una funcion que se llama asi misma. 
 
-> # Estructura de datos
+> ### Estructura de datos
 
 Se refiere a como organizamos los datos cuando programamos
 
@@ -18,9 +39,10 @@ Se refiere a como organizamos los datos cuando programamos
 
 * Para verificar que un valor se encuentra en un objeto tipo Set, se utiliza el metodo has()
 
-> # Pilas (stacks)
+> ### Pilas (stacks)
 
-Definir una pila con un arreglo no es recomendable, ya que otro programador podria utilizar el metodo _shift()_ en el arreglo (objeto) y resultaria que este dejaria de funcionar como un stack. El codgio del arreglo con pila seria el siguiente: 
+La pila es un sistema de tipo FILO (First in Last Out)
+El codigo del arreglo coomo pila seria el siguiente: 
 
 ```javascript
 let array = [];
@@ -32,10 +54,46 @@ let i = array.pop();    //i = 11
 console.log(array);     //[1,10]     
 console.log(i); 
 ```
+Definir una pila con un arreglo no es recomendable, ya que otro programador podria utilizar el metodo _shift()_ en el arreglo (objeto) y resultaria que este dejaria de funcionar como un stack, por lo tanto se realizo lo siguiente:
 
-># Queue
+```javascript
+class Stack{
+    constructor(){
+        this.array = [];
+    }
+}
 
-La simulacion de la estructura de datos tipo queue, se podria realizar de la siguiente menera:
+Stack.prototype.push = function(elem){
+    this.array.push(elem);
+    }
+
+Stack.prototype.pop = function(){
+    return this.array.pop();
+}
+
+let stackDePrueba = new Stack();
+stackDePrueba.push(1);
+stackDeprueba.push(2);
+stackDePrueba.push(3);
+stackDePrueba.pop();
+console.log(stackDePrueba);
+```
+Se obta por agregar directamente el metodo _pop_ y _push_ al objeto stackDePrueba, esto con el fin de no tener que escribir la siguiente expresion:
+
+```javascript
+stackDePrueba.array.push();
+```
+
+Y, sin embargo, solo utilizar:
+
+```javascript
+stackDePrueba.push(); // Ya que unicamnete estamos
+//mandando a llamar el metodo push del objeto stackDePrueba.
+```
+
+>### Queue
+
+La simulacion de la estructura de datos tipo queue, se podria realizar de la siguiente menera (FIFO):
 
 ```javascript
 let queue = [];
@@ -50,8 +108,31 @@ console.log(queue); // [4,5,3]
 La fomra de expresar la estructura de datos tipo queue que se mostro anteriormente no es del todo funcional. Esto es debido a que si un usuario ejecuta el metodo pop() ya no se comportaria como se requiere. Por lo tanto, se sugiere utilizar el siguiente codigo que implica utilizar clases:
 
 ```javascript
+class Queue{
+    constructor(){
+        this.array = [];
+    }
+}
 
+Queue.prototype.push = function(elem){
+    this.array.push(elem);
+}
+
+Queue.prototype.shift = function(){
+    return this.array.shift();
+}
+
+let QueueDePrueba = new Queue();
+QueueDePrueba.push(1);  //[1]
+QueueDePrueba.push(4);  //[1,4]
+QueueDePrueba.push(5);  //[1,4,5]
+QueueDePrueba.push(3);  //[1,4,5,3]
+let i = QueueDePrueba.shift();
+console.log(i); // i = 1
+console.log(QueueDePrueba.array); // [4,5,3]
 ```
+
+
 
 # **COMANDOS GIT AND GITHUB**
 [3, 34, 5, ]
