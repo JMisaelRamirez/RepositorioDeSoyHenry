@@ -131,9 +131,139 @@ let i = QueueDePrueba.shift();
 console.log(i); // i = 1
 console.log(QueueDePrueba.array); // [4,5,3]
 ```
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+## **ESTRUCTURA DE DATOS 2**
+
+ >## **Listas enlazadas**
+
+Una lista enlasada en una estructura de datos. La slistas contienen nodos, y los nodos contienen 2 partes:
+
+* Dato
+* Apuntador
+
+La diferencia entre un array y una lista enlazada es, que las direcciones de almacenamiento de cada valor que contiene una lista enlazada no deben de ser continuas y las direcciones de alamacenamiento de los datos el array y deben ser continuos. Una de las desventajas de las listas enlazadas es que son mas complejas codigificarlas a comparacion de un array. 
+
+### **_Codificacion de una lista enlazada_**
+
+La lista enlazada se codifica creando la estructura de la lista ensi y tambien, las estructura de un node.
+
+
+```javascript
+//CODIFICACION DE UNA LISTA ENLAZADA
+//Se establece la clase de un nodo
+function Node(data){
+  this.data = data;
+  this.next = null;
+}
+
+//Se establece la clase de una lista
+function LinkedList(){
+  this.length = 0;
+  this.head = null;
+}
+```
+Algunas operaciones que se pueden llevar acabo dentro de las listas enlzadas, son:
+
+* Agregar un elemento (nodo) al final de la lista. Para esto, se crea un nuevo metodo a la clase LinkedList 
+```javascript
+LinkedList.prototype.add = function(value){
+  let node = new Node(value); // node
+  current = this.head;
+  if(!current){
+    this.head = node;
+  }
+
+  while(current.next){
+    current = current.next;
+  }
+  current.next = node;
+  this.length++;
+} 
+```
+* Agregar un nodo al inicio de la lista. 
+```javascript
+LinkedList.prototype.addFirst = function(value){
+  let node = new Node(value);
+  // Se agrega el nodo al inicio
+  let backUp = this.head;
+  this.head = node;
+  current = this.head;
+  current.next = backUp;
+  this.length++;
+}
+```
+* Solicitar el numero de una posicion. 
+
+```javascript
+LinkedList.prototype.searchPosition = function(position){
+  let current = this.head;
+  let counter = 2;
+  
+  // Cuando la posicion deseada es 0 o cuando no hay nada en la lista
+
+  if(!current || position === 0 || position <= this.length){
+    return null;
+  }
+
+  // Cuando se desea el primer elemento
+  if(position === 1){
+    return current.value
+  }
+
+  // Cuando se solicita un numero despues de la posicion 2
+  while(current.next.next !== null && counter !== position){
+    current = current.next;
+    counter++;
+  }
+  return current.next.value;
+}
+
+
+```
+* Eliminar el ultimo nodo:
+```javascript
+LinkedList.prototype.remove = function () {
+  let current = this.head;
+  // head -> null
+  if(!current){ // if (current === Null) {}
+    return null; // Retorna Null
+  }
+
+  else if(current && !current.next){
+    let aux = current.value
+    this.head = null;
+    return aux
+  }
+  // head -> 3 -> 4 - > 8 -> null
+  //              ^          -
+  while(current.next.next){
+    current = current.next;
+  }
+  let aux = current.next.value;
+  current.next = null;
+  return aux;
+}
+``` 
+
+>## **Tabla Hash**
+
+
+**_El metodo charCodeAt()_**
+
+El método charCodeAt() en JavaScript se utiliza para devolver el valor numérico del carácter Unicode en la posición especificada en una cadena de caracteres. Este método toma un parámetro obligatorio, que es el índice de la posición del carácter en la cadena.
+
+Por ejemplo, si tenemos la cadena de caracteres "Hola Mundo" y queremos obtener el valor numérico del carácter en la posición 1 (que es la letra 'o'), podemos utilizar el método charCodeAt() de la siguiente manera:
+
+```javaScript
+let cadena = "Hola Mundo";
+let valor = cadena.charCodeAt(1);
+console.log(valor); // devuelve 111
+```
 
 
 
+
+///////////////////////////////////////////////////////////////
 # **COMANDOS GIT AND GITHUB**
 [3, 34, 5, ]
 

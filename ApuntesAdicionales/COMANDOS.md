@@ -1,7 +1,17 @@
-# **APUNTES**
-> # Recursion
+* Checar que es lo que hace el typeof
+* Revisar que hace el thorw new TypeError('Escribir auqi el mensaje del error')
+* Revisar que hace el metodo hasOwnProperty(_Propiedad_)
 
-Se podria decir que una recursion es una funcion que se llama asi misma. 
+# **APUNTES**
+> ## **Diferencia entre let, var y const**
+
+En JavaScript, se utilizan tres tipos de palabras clave para declarar variables: const, let y var. Estas palabras clave determinan el ámbito y la forma en que se pueden utilizar las variables en el código.
+
+const: se utiliza para declarar variables cuyo valor no cambia. Una vez que se ha asignado un valor a una variable constante, no se puede volver a asignar un valor diferente. Además, una constante debe ser inicializada en el momento de su declaración.
+
+let: se utiliza para declarar variables cuyo valor puede cambiar. A diferencia de const, se puede reasignar un valor a una variable declarada con let. La variable también puede ser inicializada posteriormente en el código.
+
+var: se utiliza para declarar variables en versiones antiguas de JavaScript. A diferencia de let y const, las variables declaradas con var tienen un ámbito de función. Es decir, si se declara una variable con var dentro de una función, su alcance está limitado a esa función. Además, las variables declaradas con var se elevan al principio del ámbito, lo que significa que se pueden utilizar antes de su declaración.
 
 > # Estructura de datos
 
@@ -27,11 +37,25 @@ Se refiere a como organizamos los datos cuando programamos
 Permite crear un nuevo archivo.
 
 # **COMANDOS DE JS**
+>**typeof _variable_**
+
+>**charCodeAt()**
+
+El método charCodeAt() en JavaScript se utiliza para devolver el valor numérico del carácter Unicode en la posición especificada en una cadena de caracteres. Este método toma un parámetro obligatorio, que es el índice de la posición del carácter en la cadena.
+
+Por ejemplo, si tenemos la cadena de caracteres "Hola Mundo" y queremos obtener el valor numérico del carácter en la posición 1 (que es la letra 'o'), podemos utilizar el método charCodeAt() de la siguiente manera:
+
+```javaScript
+let cadena = "Hola Mundo";
+let valor = cadena.charCodeAt(1);
+console.log(valor); // devuelve 111
+```
+
 >**return**
 
 El return, dentro de una funcion, nos permite retornar un valor para que este sea utilizado en la asigancion del dato de una variable. Esto no quiere decir que cambiara el valor de la variable. 
 
->**let**
+>**let()**
 
 El comando let, nos permite definir una variable de forma "temporal", para comprender mas esta situacion empezaremos explicando el siguiente caso:
 
@@ -264,6 +288,22 @@ Calcula el numero booleano de un numero.
 
 Es un metodo que nos permite saber si al objeto que asignamos tiene esa propiedad que definimos en su argumento. 
 
+> **typeof**
+
+```javascript
+console.log(typeof 42);
+// Expected output: "number"
+
+console.log(typeof 'blubber');
+// Expected output: "string"
+
+console.log(typeof true);
+// Expected output: "boolean"
+
+console.log(typeof undeclaredVariable);
+// Expected output: "undefined"
+```
+
 
 # **NOTAS RAPIDAS**
 
@@ -274,6 +314,8 @@ Es un metodo que nos permite saber si al objeto que asignamos tiene esa propieda
 >5. persona[arg] = cb(arg) ---> Asi se guarda una propiedad y su valor en un arreglo. El comando anterior (persona[arg]) nos indica que se guardara una propiedad llamada arg, o lo que contenga la variable arg, en el objeto persona, y su valor sera lo regrese la funcion cb(arg).
 >6. La diferencia entre console.log(persona.arg) o console.log(persona[arg]) --> La diferencia es la forma en la que el programa lee el comando. El primer comando el interprete lo lee como: imprimir el valor de la propiedad con la palabra arg. El segundo lo lee como: Imprimir el valor de la propiedad de la variable arg, el cual, la variable arg es un string con un nombre que desconocemos. **Un comando interpreta la texto _arg_ como el nombre del objeto y el otro como una variable _que contiene un estring en ella osea, otro nombre_**.
 > 7. Para limitar a un objeto de utilizar ciertos metodos, por ejemplo un array, se utilizan las clases y se agregan en la clase unicamnete los metodos que se quedran utilizar y dejar  aun lado los otros. 
+>8. if(!_variable_){} es igual a if(_variable_ === null){}
+>9. if(_variable_){} es igual a if(_variable_ !== null){}
 
 
 

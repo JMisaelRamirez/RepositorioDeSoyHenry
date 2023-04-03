@@ -72,6 +72,8 @@ function cacheFunction(cb) {
   }
 }
 
+let cache = new cacheFunction 
+
 
 
 
