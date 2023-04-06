@@ -1,6 +1,13 @@
-* Checar que es lo que hace el typeof
-* Revisar que hace el thorw new TypeError('Escribir auqi el mensaje del error')
+
 * Revisar que hace el metodo hasOwnProperty(_Propiedad_)
+* Que es let array = new Array[6];
+
+> ## **_charCodeAt()_**
+
+El método charCodeAt() en JavaScript se utiliza para devolver el valor numérico del carácter Unicode en la posición especificada en una cadena de caracteres. Este método toma un parámetro obligatorio, que es el índice de la posición del carácter en la cadena.
+
+Por ejemplo, si tenemos la cadena de caracteres "Hola Mundo" y queremos obtener el valor numérico del carácter en la posición 1 (que es la letra 'o'), podemos utilizar el método charCodeAt() de la siguiente manera:
+
 
 # **APUNTES**
 > ## **Diferencia entre let, var y const**
@@ -37,7 +44,38 @@ Se refiere a como organizamos los datos cuando programamos
 Permite crear un nuevo archivo.
 
 # **COMANDOS DE JS**
+> **throw new TypeError**
+
+En JavaScript, throw new TypeError es una declaración que se utiliza para lanzar un error de tipo en tiempo de ejecución.
+Cuando se ejecuta esta declaración, se detiene la ejecución del programa y se genera un objeto TypeError con el mensaje de error especificado. El mensaje puede ser cualquier cadena de texto que describa el error que se ha producido. Ejemplo:
+
+```javascript
+var edad = "25";
+if (typeof edad !== "number") {
+  throw new TypeError("La edad debe ser un número");
+}
+```
+
+
 >**typeof _variable_**
+
+En JavaScript, el método typeof se utiliza para determinar el tipo de datos de una variable o expresión.
+
+```javascript
+ nombre = "Juan";
+console.log(typeof nombre); // devuelve "string"
+
+var esMayorDeEdad = true;
+console.log(typeof esMayorDeEdad); // devuelve "boolean"
+
+var persona = { nombre: "Juan", edad: 25 };
+console.log(typeof persona); // devuelve "object"
+
+function saludar() {
+  console.log("Hola!");
+}
+console.log(typeof saludar); // devuelve "function"
+```
 
 >**charCodeAt()**
 
@@ -316,7 +354,7 @@ console.log(typeof undeclaredVariable);
 > 7. Para limitar a un objeto de utilizar ciertos metodos, por ejemplo un array, se utilizan las clases y se agregan en la clase unicamnete los metodos que se quedran utilizar y dejar  aun lado los otros. 
 >8. if(!_variable_){} es igual a if(_variable_ === null){}
 >9. if(_variable_){} es igual a if(_variable_ !== null){}
-
+>10. 10%3
 
 
 ////////////////////////////////////////

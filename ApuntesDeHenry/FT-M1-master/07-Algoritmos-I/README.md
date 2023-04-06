@@ -415,7 +415,7 @@ Ahora, piensen que en algún momento alguien puede descubrir (o inventar ) un al
 P = NP ?
 ```
 
-## Algoritmos de búsqueda
+## Algoritmos de ordenamiento
 
 Buscar algo en un conjunto de cosas es una tarea con la que nos encontramos todo el tiempo cuando progamamos, por lo tanto, no nos sorprende que los algoritmos más usados (y por lo tanto más estudiados ) son los algoritmos de búsqueda. Es importante conocer estos algoritmos ya que para crearlos se usarón técnicas que también nos van a servir para resolver otro problemas y también vemos como aprovechan ciertas estructuras de datos.
 

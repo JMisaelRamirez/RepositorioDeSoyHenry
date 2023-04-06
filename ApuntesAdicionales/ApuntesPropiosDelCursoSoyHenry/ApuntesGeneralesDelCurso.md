@@ -260,9 +260,653 @@ let valor = cadena.charCodeAt(1);
 console.log(valor); // devuelve 111
 ```
 
+## **ESTRUCTURA DE DATOS III**
+
+>## **Arboles**
+
+**Definición de los árboles:**
+
+Un árbol es una estructura de datos no lineal que consiste en un conjunto de nodos interconectados mediante enlaces llamados ramas o arcos, que se organizan jerárquicamente.
+La raíz es el nodo superior del árbol, el cual no tiene padres. Los nodos que no tienen hijos se llaman hojas. Los demás nodos se llaman nodos internos.
+Cada nodo puede tener uno o varios nodos hijos. La relación entre un nodo y sus hijos es una relación padre-hijo.
+Un árbol puede tener una altura máxima, que es la longitud del camino más largo desde la raíz hasta una hoja.
+
+![arbol](./_src/assets/06-EstructuraDeDatosIII/tree.JPG)
+
+**Tipos de Arboles**
+
+**_Binary Tree_**
+
+Este es un árbol particular que tiene como característica que la cantidad de hijos que puede tener un nodo está restringida a dos (por eso se llama árbol binario).
+
+Un árbol de este estilo puede estar _balanceado_ o no: vamos a decir que un árbol es _balanceado_ cuando la cantidad de nodos que haya a la izquierda del root sea igual (o no difiera en más de una unidad) a la cantidad de nodos en la parte izquierda.
+
+Lo bueno de estos árboles, es que si se encuentra balanceado, necesitamos no más de log n pasos para llegar a cualquier nodo! Esto los hace excelente estructuras de datos para guardar información que luego vamos a tener que buscar.
+
+![binaryTree](./_src/assets/06-EstructuraDeDatosIII/binaryTree.JPG)
+
+**_Codigo:_**
+
+```javascript
+class Nodo {
+  constructor(valor) {
+    this.valor = valor;
+    this.izquierdo = null;
+    this.derecho = null;
+  }
+}
+
+class ArbolBinario {
+  constructor() {
+    this.raiz = null;
+  }
+
+  agregar(valor) {
+    const nodo = new Nodo(valor);
+    if (this.raiz === null) {
+      this.raiz = nodo;
+    } else {
+      this.agregarNodo(this.raiz, nodo);
+    }
+  }
+
+  agregarNodo(nodoActual, nodoNuevo) {
+    if (nodoActual.izquierdo === null) {
+      nodoActual.izquierdo = nodoNuevo;
+    } else if (nodoActual.derecho === null) {
+      nodoActual.derecho = nodoNuevo;
+    } else {
+      this.agregarNodo(nodoActual.izquierdo, nodoNuevo);
+    }
+  }
+}
+```
+**_BinarySearchTree_**
+
+Los árboles de búsqueda binarios son árboles binarios en los que cada nodo tiene un valor numérico asociado, y los valores en los nodos izquierdos son menores que el valor en el nodo padre, mientras que los valores en los nodos derechos son mayores.
+
+![binarySearchTree](./_src/assets/06-EstructuraDeDatosIII/binarySearchTree.JPG)
+
+**_Codigo:_**
+
+```javascript
+class ArbolBusquedaBinario {
+  constructor() {
+    this.raiz = null;
+  }
+
+  agregar(valor) {
+    const nodo = new Nodo(valor);
+    if (this.raiz === null) {
+      this.raiz = nodo;
+    } else {
+      this.agregarNodo(this.raiz, nodo);
+    }
+  }
+
+  agregarNodo(nodoActual, nodoNuevo) {
+    if (nodoNuevo.valor < nodoActual.valor) {
+      if (nodoActual.izquierdo === null) {
+        nodoActual.izquierdo = nodoNuevo;
+      } else {
+        this.agregarNodo(nodoActual.izquierdo, nodoNuevo);
+      }
+    } else {
+      if (nodoActual.derecho === null) {
+        nodoActual.derecho = nodoNuevo;
+      } else {
+        this.agregarNodo(nodoActual.derecho, nodoNuevo);
+      }
+    }
+  }
+}
+```
+**_AVL Tree (Auto Balanceo)_**
+
+Un árbol AVL es un árbol binario de búsqueda auto-balanceado. En un árbol binario de búsqueda, cada nodo tiene como máximo dos hijos y el hijo izquierdo es menor que el nodo padre, mientras que el hijo derecho es mayor o igual que el nodo padre. Esta propiedad asegura que los elementos en el árbol estén ordenados.
+
+En un árbol AVL, cada nodo tiene un factor de equilibrio, que es la diferencia entre las alturas de sus subárboles izquierdo y derecho. El factor de equilibrio puede tener uno de tres valores: -1, 0 o 1. El árbol se considera equilibrado si el factor de equilibrio de cada nodo es -1, 0 o 1. Si el factor de equilibrio de cualquier nodo está fuera de este rango, el árbol está desequilibrado y debe ser reequilibrado.
+
+El objetivo de un árbol AVL es mantener el equilibrio mientras sigue proporcionando operaciones eficientes para buscar, insertar y eliminar nodos. Esto se logra a través de un proceso llamado rotación, que implica intercambiar nodos para mantener el factor de equilibrio.
+
+Existen cuatro tipos de rotaciones que se pueden realizar en un árbol AVL: rotación a la derecha, rotación a la izquierda, rotación derecha-izquierda y rotación izquierda-derecha. Estas rotaciones se utilizan para reequilibrar el árbol cuando se agrega o elimina un nodo.
+
+La complejidad temporal de las operaciones en un árbol AVL es O(log n) en el peor de los casos, lo que lo convierte en una estructura de datos eficiente para almacenar y buscar grandes cantidades de datos.
+
+En resumen, un árbol AVL es un tipo de árbol binario de búsqueda auto-balanceado que mantiene el equilibrio a través de un proceso de rotación. Proporciona operaciones eficientes para buscar, insertar y eliminar nodos, y se usa comúnmente en aplicaciones como bases de datos y compiladores donde la eficiencia es crítica.
+
+**Codigo:**
+
+```javascript
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.left = null;
+    this.right = null;
+    this.height = 1;
+  }
+}
+
+class AVLTree {
+  constructor() {
+    this.root = null;
+  }
+
+  height(node) {
+    if (node === null) {
+      return 0;
+    }
+    return node.height;
+  }
+
+  max(a, b) {
+    return a > b ? a : b;
+  }
+
+  rightRotate(y) {
+    const x = y.left;
+    const temp = x.right;
+
+    x.right = y;
+    y.left = temp;
+
+    y.height = this.max(this.height(y.left), this.height(y.right)) + 1;
+    x.height = this.max(this.height(x.left), this.height(x.right)) + 1;
+
+    return x;
+  }
+
+  leftRotate(x) {
+    const y = x.right;
+    const temp = y.left;
+
+    y.left = x;
+    x.right = temp;
+
+    x.height = this.max(this.height(x.left), this.height(x.right)) + 1;
+    y.height = this.max(this.height(y.left), this.height(y.right)) + 1;
+
+    return y;
+  }
+
+  getBalanceFactor(node) {
+    if (node === null) {
+      return 0;
+    }
+    return this.height(node.left) - this.height(node.right);
+  }
+
+  insert(value) {
+    this.root = this._insert(this.root, value);
+  }
+
+  _insert(node, value) {
+    if (node === null) {
+      return new Node(value);
+    }
+
+    if (value < node.value) {
+      node.left = this._insert(node.left, value);
+    } else {
+      node.right = this._insert(node.right, value);
+    }
+
+    node.height = this.max(this.height(node.left), this.height(node.right)) + 1;
+
+    const balanceFactor = this.getBalanceFactor(node);
+
+    if (balanceFactor > 1 && value < node.left.value) {
+      return this.rightRotate(node);
+    }
+
+    if (balanceFactor < -1 && value > node.right.value) {
+      return this.leftRotate(node);
+    }
+
+    if (balanceFactor > 1 && value > node.left.value) {
+      node.left = this.leftRotate(node.left);
+      return this.rightRotate(node);
+    }
+
+    if (balanceFactor < -1 && value < node.right.value) {
+      node.right = this.rightRotate(node.right);
+      return this.leftRotate(node);
+    }
+
+    return node;
+  }
+
+  preOrder(node) {
+    if (node !== null) {
+      console.log(node.value);
+      this.preOrder(node.left);
+      this.preOrder(node.right);
+    }
+  }
+
+  inOrder(node) {
+    if (node !== null) {
+      this.inOrder(node.left);
+      console.log(node.value);
+      this.inOrder(node.right);
+    }
+  }
+
+  postOrder(node) {
+    if (node !== null) {
+      this.postOrder(node.left);
+      this.postOrder(node.right);
+      console.log(node.value);
+    }
+  }
+
+  print() {
+    console.log('Preorder traversal:');
+    this.preOrder(this.root);
+    console.log('Inorder traversal:');
+    this.inOrder(this.root);
+    console.log('Postorder traversal:');
+    this.postOrder(this.root);
+  }
+}
+
+const tree = new AVLTree();
+
+tree.insert(10);
+tree.insert(20);
+tree.insert(30);
+tree.insert(40);
+tree.insert(50);
+tree.insert(25);
+
+tree.print();
+
+```
+
+## **ALGORITMOS EN JAVASCRIPT I**
+
+ >## **Algoritmo**
+
+ Un algoritmo es un conjutno de pasos que al llevarlos acabo se llega a un objetivo especifico. 
+
+ **¿Que hace que un algoritmo sea bueno?**
+
+ * Resuelve un problema: Cumple con su objetivo al seguir los pasos
+
+ * Debe ser comprensible: Que no solo yo lo comprenda, sino tambien la demas gente.
+
+ * Hacerlo eficientemente: Que lo haga rapido y con bajos recursos. Aveces se pueden sacificar recursos si es mas importante para nosotros otros recuros. 
+
+ **¿Como medimos la eficinecia de un algoritmo?**
+ 
+ 1. Tiempo: Cuanto tarda el algoritmo en ejecutarse
+ 2. Espacio: Cuatos recursos consume
+ 3. Otro: 
+    - Red
+    - Graficos
+    - HardWare 
+
+>## **O Big Notation**
+
+**¿Que es la complejidad espacial y temporal?**
+
+La complejidad espacial y temporal son conceptos que se utilizan en la teoría de la complejidad computacional para **analizar** la eficiencia de los algoritmos.
+
+La **complejidad temporal** se refiere a la cantidad de tiempo que tarda un algoritmo en resolver un problema, medida en términos del número de operaciones o instrucciones que se deben realizar. Por lo tanto, la complejidad temporal se puede expresar como una función del tamaño de entrada del problema, es decir, cuántos datos se necesitan procesar para resolver el problema.
+
+Por ejemplo, si tenemos una lista de números y queremos ordenarlos, la complejidad temporal del algoritmo de ordenamiento **determinará** cuánto tiempo tomará el algoritmo para ordenar la lista en función del número de elementos en la lista.
+
+Ejemplo:
+Existe otros 2  metodo para medir el tiempo de ejecucion de un algoritmo. Aun que, estos no son del todo precisos. Uno es usando el metodo performance():
+
+```javascript
+const performance = require(`perf_hooks`)
+
+function sumaLosValores(str) {
+  if(typeof str !== 'object'){
+    return
+  }
+  let sum = 0;
+  for(let i = 0; i < str.length; i++){
+    sum += str[i]
+  }
+
+  return sum
+}
+let inicioTiempo = performance.performance.now();
+let sum = sumaLosValores([1,2,3,4,5]);
+let finalTiempo = performance.performance.now();
+let duracion =  finalTiempo - inicioTiempo;
+console.log(sum);
+console.log(duracion)
+
+OutPut:
+// Se llevaron acabo 3 pruebas y los tiempos no fueron del todo precisos y estables. 
+PS C:\Users\ingen\Desktop\CursoSoyHenry> node pruebaCodigos.js
+15
+0.029500000178813934
+PS C:\Users\ingen\Desktop\CursoSoyHenry> node pruebaCodigos.js
+15
+0.05039999634027481
+PS C:\Users\ingen\Desktop\CursoSoyHenry> node pruebaCodigos.js
+15
+0.030199997127056122
+```
+Ejemplo con **console.time()**:
+
+```javascript
+function sumaLosValores(str) {
+  if(typeof str !== 'object'){
+    return
+  }
+  let sum = 0;
+  for(let i = 0; i < str.length; i++){
+    sum += str[i]
+  }
+
+  return sum
+}
+
+console.time(`duracion-sumaLosValores`)
+sumaLosValores([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+console.timeEnd(`duracion-sumaLosValores`)
+
+OutPut:
+
+PS C:\Users\ingen\Desktop\CursoSoyHenry> node pruebaCodigos.js
+duracion-sumaLosValores: 0.089ms
+PS C:\Users\ingen\Desktop\CursoSoyHenry> node pruebaCodigos.js
+duracion-sumaLosValores: 0.089ms
+PS C:\Users\ingen\Desktop\CursoSoyHenry> node pruebaCodigos.js
+duracion-sumaLosValores: 0.105ms
+PS C:\Users\ingen\Desktop\CursoSoyHenry> node pruebaCodigos.js
+duracion-sumaLosValores: 0.088ms
+PS C:\Users\ingen\Desktop\CursoSoyHenry> node pruebaCodigos.js
+duracion-sumaLosValores: 0.088ms
+PS C:\Users\ingen\Desktop\CursoSoyHenry> node pruebaCodigos.js
+duracion-sumaLosValores: 0.091ms
+```
 
 
+La **complejidad espacial** se **refiere** a la cantidad de memoria que un algoritmo utiliza para resolver un problema, medida en términos de la cantidad de espacio de almacenamiento requerido para procesar los datos. En otras palabras, la complejidad espacial **mide** la cantidad de recursos de memoria que se necesitan para resolver un problema.
 
+Por ejemplo, si tenemos un algoritmo que convierte un valor de 1D a 2D debemos saber cuanta memoria requerira el algoritmo para realizar dicha funcion. Osea, cuantas variables o cuantos arreglos se van a crear en el proceso del algoritmo
+
+Ejem: 
+
+```javascript
+function intToString(array){ // TipoDato: Arreglo con datos de tipo entero
+    let resultado = array.map(elemento => elemento.toString())
+    return resultado; // Retorna un string
+  }
+
+function dosDimensiones(valor){ // TipoDato: Entero
+ let array = new Array(valor);
+ for (let i = 0; i < valor; i++) {
+    array[i] = new Array(valor).fill('Jencita')
+ }
+ return array; // Retorna un string. 
+}
+
+  console.log(intToString([1 ,2 ,3,5, 7, 8]));
+  console.log(dosDimensiones(5));
+
+// Al observar ambas funciones (algoritmos) se observa que la funcion
+// dosDimensiones requiere mas recursos que la funcion
+// inToString
+```
+Los resultados obtenidos en los 4 ejemplos propuestos anteriromente, acerca de la complejidad temporal y espacial, nos brindar resultados dificles de interpretar y son bastante variables. De echo, a continuacion se muestran algunas graficas del analisis de 2 algoritmos distintos del tiempo requerido por el algoritmo en funcion de la cantidad de datos que se le ingresen al algoritmo. 
+
+![Complejidad1](./_src/assets/07-Algoritmos-I/ComplejidadEjm1.JPG)
+
+
+![Complejidad1](./_src/assets/07-Algoritmos-I/ComplejidadEjm2.JPG)
+
+Para facilitar la interpretacion de cada algoritmo, buscaremos reducir la complejidad con ayuda de un **Analisis Asintotico (Asymptotic Analysis)**. Este analisis matematico nos permitira identificar hacia que funcion tiende la grafica obtenida por la complejidad espacial y temporal. De igual forma, este analisis nos permite evaluar si un algoritmo funciona en funcion a algo mas estandar y no en funcion al tiempo de operacion, los recursos ocupados, el hardaware de la computadora, los procesos que se estan ejecutando etc. Por lo tanto, utilizaremos la **Complejidad Big O**
+
+En el ejemplo anterior. La primera grafica tiende hacer a una funcion lineal y, en el segundo ejemplo a una funcion cuadratica. Dado lo anterior, podremos asemejar cada algoritmo o procesos a una funcion dependiendo de la complejidad de esta. 
+
+![FuncionBigOyF()](./_src/assets/07-Algoritmos-I/FuncionBig0yF().JPG)
+
+**Que es y para que sirve la Big "O" Notation**
+
+Es una **herramienta**. El Big O Notatio, **mide** el tiempo de ejecucion y la complejidad de un algoritmo en termino de la cantidad de entrada que maneja. En otras palabras, se refiere a la máxima cantidad de tiempo o espacio que un algoritmo podría tomar para completar su tarea, dado un tamaño de entrada específico
+
+_**Notacion Big O en complejidad temporal**_
+
+![Notacion Big O en complejidad temporal](./_src/assets/07-Algoritmos-I/BigOenComplejidadTemporal.JPG)
+
+_**Notacion Big O en complejidad espacial**_
+
+![votacion Big O en complejidad espacial](./_src/assets/07-Algoritmos-I/BigOenComplejidadEspacial.JPG)
+
+_**Comparación Gráfica**_
+
+![Big-o](./_src/assets/07-Algoritmos-I/bigo.png)
+
+En la imagen de arriba podemos ver una comparación gráfica de las distintas complejidades de los algoritmos.
+
+Si tuvieramos una compu es capaz de ejecutar 1.000.000 instrucciones por segundo (un poco optimista para las compus de hoy) , veamos cuanto tiempo tardarían algoritmos de distinta complejidad  en terminar de correr con un N de entrada de 1000.
+
+![tablaTiempo](./_src/assets/07-Algoritmos-I/tablatiempo.png)
+
+Sorprendente, no? Miren [esto](https://es.wikipedia.org/wiki/Torres_de_Han%C3%B3i#Historia)
+
+Ahora pensemos el problema al reves. ¿Qué cantidad de datos podría procesar cada algoritmo en un segundo?:
+
+![tablaSegundo](./_src/assets/07-Algoritmos-I/tablasegundo.png)
+
+Al primero podemos tirarle la cantidad de datos que quisieramos! (de hecho tendriamos un problema de memoria, más que de tiempo).
+A los últimos los vamos a poder usar sólamente con entradas que sean muy pequeñas... si no, vamos a tener que esperar mucho tiempo
+
+A continucacion realizaremos 2 ejercicios aplicando la Big O Notatio: 
+
+**Ej 1:**
+```javascript
+let max // O(1)
+for(){  // O(N) 
+  if() // do smth O(1)
+  else() // do ngth O(1)
+} // O(2*N) == O(N)
+console.log(max) // O(1)
+
+// Every thing => O(2 + N) => O(N) 
+```
+**Ej 2:**
+```javascript
+function sumArray(array, n){
+  var fin = array.lenght -1; //O(1)
+  var init = 0; // O(1)
+
+  while(init < fin){ // O(N)
+    var sum = array[ini] + array[fin]; // O(1)
+    if(suma === n) return true;// O(1)
+    if(suma > n) fin - fin -1;// O(1)
+    if(suma < n) ini - ini +1;// O(1)
+  } // O(4*N) => O(N)
+  return false // O(1)
+}; // O(3 + N) => O(N)
+```
+
+**Ej 3:**
+
+#### Adivinando un número
+
+Hagamos un pequeño juego para ver cómo distintos approachs a un mismo problema pueden tener distintas eficiencias, de hecho, para jugar vamos a crear un _algoritmo_ mental que vamos a seguir hasta ganar el juego.
+
+Vamos a elegir aleatoriamente un numero entre una lista de números del 1 a 16. La persona que adivine ese número en la menor cantidad de pasos será el ganador. En cada caso, el que conoce el número dirá si el número adivinado es mayor o menor que el objetivo.
+
+Empezemos a jugar. Cada uno va a intentar adivinar y nos va a contar qué técnica utilizó para agrandar sus chances de ganar.
+
+#### Búsqueda Linear
+
+Digamos que no queriamos pensar mucho, y decidimos atacar el problema con lo que se conoce como __Fuerza Bruta__, es decir, intentar de a una cada una de las soluciones posibles hasta dar con el resultado. En ese caso podríamos decidir empezar desde el 1 o el 16, e ir probando uno por uno hasta dar con el número. Ahora intentemos calcular de antemano cuantas veces tendríamos que adivinar para ganar, bueno dependiendo de nuestra suerte podriamos ganar en un paso (El número ganador es el 1 o el 16 y empezamos por ese extremo), o si la suerte no está de nuestro lado, el peor caso sería de 16 (el número es 1 o 16, pero empezamos por el extremo opuesto). Entonces podemos ganar el juego en una cantidad de veces que esté entre 1 y 16, no? De hecho si jugaramos muchas veces (como el que elige el número lo hace de forma aleatoria y están igualmente distribuidas las probabilidades) nos vamos a dar cuenta que __en promedio__ vamos a ganar el juego en 8 veces.
+
+Ahora, como podriamos hacer para bajar la cantidad de veces que en promedio necesitamos? Bueno, como el que sabe el número nos dice si el número que elegimos es mayor o menor, podemos hacer uso de eso para optimizar nuestro juego. Tenemos que pensar lo siguiente: ¿Qué número tengo que elegir para obligar al que sabe el número a que descarte la mayor cantidad de números __EN PROMEDIO__?  Si pensamos en el número mas cercano al medio, estamos en lo correcto. Al quedar la mayor cantidad de número a la derecha y a la izquierda del número central, aprovecharemos al máximo la información que nos da el que sabe el número.
+Ahora pensemos el mejor y el peor caso. De nuevo, si tenemos mucha suerte, y el número ganador es el central, vamos a ganar en una sólo jugada!
+Ahora, en el peor de los casos vamos a ir dividiendo la lista en dos, hasta qué sólo quede un sólo número: el ganador!
+Por ejemplo:
+
+Aleatoriamente el número que salió es el __9__
+
+```js
+1-2-3-4-5-6-7-8-9-10 <- elegimos el 5  / 10 posibilidades
+
+~~1-2-3-4-5-~~6-7-8-9-10 <- elegimos el 8  / 5 posibilidades
+
+~~1-2-3-4-5-6-7-8~~-9-10 <- elegimos el 10 / 2 posibilidades
+
+~~1-2-3-4-5-6-7-8-~~9~~-10~~ <- El número era el 9! / 1 posibilidad
+```
+
+En cada paso vamos a ir dividiendo la lista en dos, hasta que nos quedamos con una lista de sólo un número, en tal caso estamos seguros que es el número ganador. Para averiguar la cantidad máxima de pasos necesario vamos a necesitar un poco de matemáticas:
+
+Sabemos que el número máximo de veces que vamos a necesitar sale de la cantidad de veces que podemos dividir la lista en dos hasta que el resultado sea uno, no? Lo podemos escribir en forma matemática así:
+
+```js
+1 = N / 2x // N es el largo de la lista y x el número que buscamos
+```
+
+Para despejar la potencia usamos logaritmo:
+
+```js
+log2(2x)    = log2 N
+x * log2(2) = log2 N
+x * 1         = log2 N
+```
+
+> ## **Algoritmos de ordenamiento**
+
+### **BubbleSort**
+
+Este algoritmo es muy simple:
+
+ 1. Recorré los elementos: si dos items adyacentes estan desordenados, hacé un swap.
+ 2. Si terminas un recorrido sin hacer un swap, ya está ordenado.
+
+  ![bubbleShort](./_src/assets/07-Algoritmos-I/bubbleShort.gif)
+
+**Codigo:**
+
+```javascript
+function bubbleSort(numeros){
+    let cambio = true;
+    while(cambio){
+        cambio = false;
+        for(let i = 0; i < numeros.length-1; i++){
+            if(numeros[i] > numeros[i +1]){
+                cambio = true;
+                let auxiliar = numeros[i];
+                numeros[i] = numeros[i+1];
+                numeros[i+1] = auxiliar
+            }
+        }
+    }
+    return numeros
+}
+let numerosDesordenados = [18, 20, 15, 4, 6, 11, 3, 12, 19, 16, 10, 14, 8, 5, 1, 7, 2, 17, 13, 9];
+let numerosOrdenados = bubbleSort(numerosDesordenados);
+console.log(numerosOrdenados)
+```
+### **InsertionSort**
+Este algoritmo evalua dato por dato y evalua este dato con los datos anteriores y busca donde posicionarlo 
+
+![insertionSort](./_src/assets/07-Algoritmos-I/insertionSort.gif)
+
+**Codigo:**
+```javascript
+
+let numeros = [6000, 200, 100, 3000, 3, 80]
+
+function ordenarNumeros (numeros) {
+  for (let i = 1; i <= numeros.length - 1; i++ ){
+    let numeroAComparar = numeros[i]
+        //  0 1 2 3
+    // [3,2,4,5] 2, if numeroAComparar < numeros[i-j] 
+    // i = 1 y j = 1         2              4                      
+            
+    //                                         
+    //         numero[i]
+    //                                   
+    //         if (numeroAComparar < numeros[i - j])
+    //             switch
+    // num 
+    for(let j = 1; (i-j) >= 0  && numeroAComparar < numeros[i - j]; j++){
+      numeros[i - j + 1] = numeros[i - j];
+      numeros[i - j] = numeroAComparar; 
+    }
+  }
+  return numeros;
+}
+
+let numerosOrdenados = ordenarNumeros(numeros);
+console.log(numerosOrdenados)
+
+```
+### **SelectionSort**
+Este algortimo evalua dato por dato y analisa los datos posteriores y encuentra el minimo a este para hacer un intercambio. 
+
+![selectionSort](./_src/assets/07-Algoritmos-I/selectionSort.gif)
+
+**Codigo:**
+
+```javascript
+let numerosDesordenados = [5,4,3,2,1,0,-3,-4]
+
+function ordenarNumeros (numeros) {
+
+  for (let i = 0; i < numeros.length; i++) { // i = 0
+    let numeroMin = numeros[i]; // 10
+    let posicionNumeroMinimo;
+        // j =  4   4 < 4           
+    for (let j = i + 1; j < numeros.length; j++) { 
+      if (numeros[j] < numeroMin) { // 7 < 8
+        numeroMin = numeros[j]; // 
+        numeros[j] = numeros[i]
+        numeros[i] = numeroMin;
+      }
+
+    }
+
+
+  }
+  return numeros
+}
+
+let numerosOrdenados = ordenarNumeros(numerosDesordenados);
+console.log(numerosOrdenados)
+```
+>## **Algoritmo para factorear un numero**
+
+```javascript
+function factorear(num) {
+  // Factorear el número recibido como parámetro y devolver en un array
+  // los factores por los cuales se va dividiendo a dicho número (De menor a mayor)
+  // Ej: factorear(180) --> [1, 2, 2, 3, 3, 5] Ya que 1x2x2x3x3x5 = 180 y son todos números primos
+  // Tu código:
+  //  180  | 2
+  //  90   | 2
+  //  45   | 3
+  //  15   | 3
+  //  5    | 3
+  //  1    | 5
+  
+  let primos = [1];
+  let valorDenominador = 2;
+  let posicion = 1;
+
+  while (num !== 1) {
+    if (num % valorDenominador === 0) {
+      num = num / valorDenominador;
+      primos[posicion] = valorDenominador
+      posicion ++
+    }else{
+      valorDenominador++nod
+    }
+  }
+  return primos
+}
+```
 ///////////////////////////////////////////////////////////////
 # **COMANDOS GIT AND GITHUB**
 [3, 34, 5, ]
