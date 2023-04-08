@@ -452,7 +452,6 @@ class AVLTree {
     }
 
     node.height = this.max(this.height(node.left), this.height(node.right)) + 1;
-
     const balanceFactor = this.getBalanceFactor(node);
 
     if (balanceFactor > 1 && value < node.left.value) {
@@ -518,10 +517,215 @@ tree.insert(30);
 tree.insert(40);
 tree.insert(50);
 tree.insert(25);
-
 tree.print();
-
 ```
+**_Max Head Tree_**
+
+Un Max Heap Tree, o simplemente Max Heap, es una estructura de datos en forma de árbol binario completo donde cada nodo tiene un valor que es mayor o igual que los valores de sus hijos. Es decir, el nodo raíz del árbol contendrá el valor máximo de todos los nodos en el árbol.
+
+En un Max Heap, el hijo izquierdo de un nodo se almacena en el índice 2 * i + 1 y el hijo derecho se almacena en el índice 2 * i + 2, donde i es el índice del nodo padre. Del mismo modo, el nodo padre de un nodo i se almacena en el índice (i - 1) / 2.
+
+Los Max Heaps se utilizan comúnmente en la implementación del algoritmo de ordenamiento HeapSort y en la implementación de las Colas de Prioridad.
+
+Aquí hay un ejemplo de cómo implementar un Max Heap en JavaScript:
+
+**Codigo:**
+
+```javascript
+class MaxHeap {
+  constructor() {
+    this.heap = [];
+  }
+
+  getLeftChildIndex(parentIndex) {
+    return 2 * parentIndex + 1;
+  }
+
+  getRightChildIndex(parentIndex) {
+    return 2 * parentIndex + 2;
+  }
+
+  getParentIndex(childIndex) {
+    return Math.floor((childIndex - 1) / 2);
+  }
+
+  hasLeftChild(index) {
+    return this.getLeftChildIndex(index) < this.heap.length;
+  }
+
+  hasRightChild(index) {
+    return this.getRightChildIndex(index) < this.heap.length;
+  }
+
+  hasParent(index) {
+    return this.getParentIndex(index) >= 0;
+  }
+
+  leftChild(index) {
+    return this.heap[this.getLeftChildIndex(index)];
+  }
+
+  rightChild(index) {
+    return this.heap[this.getRightChildIndex(index)];
+  }
+
+  parent(index) {
+    return this.heap[this.getParentIndex(index)];
+  }
+
+  swap(index1, index2) {
+    const temp = this.heap[index1];
+    this.heap[index1] = this.heap[index2];
+    this.heap[index2] = temp;
+  }
+
+  peek() {
+    if (this.heap.length === 0) {
+      return null;
+    }
+    return this.heap[0];
+  }
+
+  poll() {
+    if (this.heap.length === 0) {
+      return null;
+    }
+    const item = this.heap[0];
+    this.heap[0] = this.heap.pop();
+    this.heapifyDown();
+    return item;
+  }
+
+  add(item) {
+    this.heap.push(item);
+    this.heapifyUp();
+  }
+
+  heapifyUp() {
+    let index = this.heap.length - 1;
+    while (this.hasParent(index) && this.parent(index) < this.heap[index]) {
+      const parentIndex = this.getParentIndex(index);
+      this.swap(parentIndex, index);
+      index = parentIndex;
+    }
+  }
+
+  heapifyDown() {
+    let index = 0;
+    while (this.hasLeftChild(index)) {
+      let largestChildIndex = this.getLeftChildIndex(index);
+      if (this.hasRightChild(index) && this.rightChild(index) > this.leftChild(index)) {
+        largestChildIndex = this.getRightChildIndex(index);
+      }
+
+      if (this.heap[index] > this.heap[largestChildIndex]) {
+        break;
+      } else {
+        this.swap(index, largestChildIndex);
+      }
+      index = largestChildIndex;
+    }
+  }
+}
+
+const maxHeap = new MaxHeap();
+maxHeap.add(10);
+maxHeap.add(20);
+maxHeap.add(30);
+maxHeap.add(5);
+
+console.log(maxHeap.poll()); // Devuelve 
+```
+
+**_Min Head Tree_**
+
+Un Min Heap Tree (también llamado árbol de montículo mínimo) es una estructura de datos de árbol binario que tiene la propiedad de que cada nodo padre tiene un valor menor o igual que sus nodos hijos. En otras palabras, el nodo raíz contiene el valor mínimo del árbol.
+
+En un Min Heap Tree, los nodos se organizan en niveles, donde el nivel superior contiene solo un nodo (la raíz), el segundo nivel contiene dos nodos, el tercer nivel contiene cuatro nodos y así sucesivamente. Además, el árbol se construye de izquierda a derecha, lo que significa que se llena un nivel antes de comenzar el siguiente.
+
+Los Min Heap Trees son útiles en algoritmos de clasificación y búsqueda, como el algoritmo de ordenación Heap Sort. También son comúnmente utilizados en la implementación de colas de prioridad.
+
+Un ejemplo en JavaScript de un Min Heap Tree podría ser el siguiente:
+
+**Codigo:**
+
+```javascript
+class MinHeap {
+  constructor() {
+    this.heap = [];
+  }
+
+  insert(value) {
+    this.heap.push(value);
+    this.bubbleUp(this.heap.length - 1);
+  }
+
+  extractMin() {
+    if (this.heap.length === 0) {
+      return null;
+    }
+    const min = this.heap[0];
+    const last = this.heap.pop();
+    if (this.heap.length > 0) {
+      this.heap[0] = last;
+      this.bubbleDown(0);
+    }
+    return min;
+  }
+
+  bubbleUp(index) {
+    const node = this.heap[index];
+    while (index > 0) {
+      const parentIndex = Math.floor((index - 1) / 2);
+      const parent = this.heap[parentIndex];
+      if (parent <= node) {
+        break;
+      }
+      this.heap[parentIndex] = node;
+      this.heap[index] = parent;
+      index = parentIndex;
+    }
+  }
+
+  bubbleDown(index) {
+    const node = this.heap[index];
+    const length = this.heap.length;
+    while (true) {
+      const leftChildIndex = 2 * index + 1;
+      const rightChildIndex = 2 * index + 2;
+      let leftChild, rightChild;
+      let swap = null;
+
+      if (leftChildIndex < length) {
+        leftChild = this.heap[leftChildIndex];
+        if (leftChild < node) {
+          swap = leftChildIndex;
+        }
+      }
+
+      if (rightChildIndex < length) {
+        rightChild = this.heap[rightChildIndex];
+        if (
+          (swap === null && rightChild < node) ||
+          (swap !== null && rightChild < leftChild)
+        ) {
+          swap = rightChildIndex;
+        }
+      }
+
+      if (swap === null) {
+        break;
+      }
+
+      this.heap[index] = this.heap[swap];
+      this.heap[swap] = node;
+      index = swap;
+    }
+  }
+}
+```
+
+
 
 ## **ALGORITMOS EN JAVASCRIPT I**
 
