@@ -10,9 +10,50 @@
 
   El ábrol utilizado para hacer los tests se encuentra representado en la imagen bst.png dentro del directorio homework.
 */
+// 2do caso: Ingreso: 6
+      //       5
+      //     /   \
+      //    4     7 6
+      //  /  \   / \
+      // n    n n   n
+      //
+function BinarySearchTree(value) {
+  this.value = value;
+  this.left = null;
+  this.rigth = null;
+}
 
-function BinarySearchTree() {}
+BinarySearchTree.prototype.insert = function(nodeValue){
+  if(nodeValue > this.value){ // Derecha
+    if(this.rigth !== null){
+      this.rigth = new BinarySearchTree(nodeValue);
+      return
+    }
+    this.rigth.insert(nodeValue);
 
+  } else {
+    if(this.left !== null){
+      this.left = new BinarySearchTree(nodeValue);
+      return
+    }
+    this.left.insert(nodeValue);
+  }
+  
+}
+BinarySearchTree.prototype.size = function(){
+  // Se hace le recorrido y se define un contador
+}
+BinarySearchTree.prototype.contains = function(){
+  // Recorrido, hacemos uns instancia, en la condicion principal 
+  // definimos si existe ese valor en el nodo actual
+}
+BinarySearchTree.prototype.depthFirstForEach = function(){
+  // Implementar cada uno de los recorridos. Se utilza un sqitch case para caso
+
+}
+BinarySearchTree.prototype.breadthFirstForEach = function(){
+  // Recorre el arbol siguiente la definicion del recorrido. 
+}
 // No modifiquen nada debajo de esta linea
 // --------------------------------
 

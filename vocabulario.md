@@ -1,0 +1,3 @@
+* breadth - amplitud
+* depth - profundidad
+
