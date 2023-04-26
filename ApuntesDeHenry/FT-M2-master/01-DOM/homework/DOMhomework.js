@@ -8,7 +8,8 @@ const toDoItems = [];
 // Tu código acá:
 
 let span = document.querySelector('#createdBy');
-span.innerHTML += ' FT-31C';
+span.innerHTML += ' p de lopez'
+
 
 // Crear una clase denominada 'ToDo' cuyo constructor debe recibir un único parámetro del tipo string
 // con el nombre 'description' que será justamente la descripción del ToDo.
@@ -28,11 +29,12 @@ function ToDo (description) {
 // No requiere ningún argumento
 // Debe setear el atributo 'complete' del ToDo en true
 
-// Tu código acá:
+// Tu código acá
 
 ToDo.prototype.completeToDo = function(){
   this.complete = !this.complete;
 }
+
 
 // Agregar dos parámetros a la función 'buildToDo':
 //    1) Un objeto de la clase ToDo

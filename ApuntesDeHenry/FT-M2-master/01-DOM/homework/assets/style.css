@@ -1,42 +1,42 @@
 body {
   background-color: rgb(232, 246, 255);
   font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-  margin-top: 56px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin-top: 56px; /*Margen superior de la seccion body*/
+  display:flex; /*Despliegue*/
+  flex-direction:column; /*Direccion del flex*/
+  align-items:center; /*Alineacion de los objetos*/
 }
 
 #header {
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: #428fbb;
-  height: 56px;
-  /* padding-left: 15px; */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  width: 100%; /*El largo de la linea de encabezado*/
+  position: absolute; /*Posicion del head*/
+  top: 0; /*Distancia de arriba a la linea del head*/
+  left: 0; /*istancia desde la izquierda*/
+  background: #E4007C; /*Color del fondo*/
+  height: 56px; /*Grosor del label of the head*/
+
+  display: flex; /*Despliegue*/
+  justify-content: space-between; /*Justificacion*/
+  align-items: center; /*Alineacion*/
 }
 
 #header span {
-  font-size: 24px;
-  color: white;
-  padding-right: 15px;
+  font-size: 24px; /*Tamaño de la fuente. Letra*/
+  color: white;  
+  padding-right: 60px; /*Espacio del contenido al lado derecho*/
 }
 
 #header a {
-  padding-left: 15px;
+  padding-left: 15px; /* padding-left: 15px;  Espacio del contenido al lado izquierdo*/
 }
 
 
 #container {
-  background-color: #428fbb;
+  background-color: #E4007c;
   box-shadow: 2px 2px 5px#000;
-  width: 50%;
+  width: 40%;
   min-width: 700px;
-  border-radius: 5px;
+  border-radius:4px;
 }
 
 #inputContainer {
@@ -53,6 +53,7 @@ body {
   font-size: 20px;
   border: none;
   border-radius: 4px;
+  margin-top: 3%;
 }
 
 #addButton {
@@ -64,9 +65,10 @@ body {
   border-radius: 4px;
   cursor: pointer;
   height: 35px;
-  background: #0160A2;
-  color: #FFF;
+  background: #dcef0e;
+  color: #ffffff;
   font-size: 20px;
+  margin-top: 3%;
 }
 
 #toDoContainer {

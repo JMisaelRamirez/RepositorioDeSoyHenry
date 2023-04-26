@@ -19,14 +19,68 @@
   </tr>
 </table>
 
-# CSS Avanzado
+# **Notas**
+## **¿Que es el responsive?**
+Cuando utilizamos el término “responsive” (adaptable), nos referimos principalmente a “responsive design” (diseño web adaptable). Esto significa hacer que un sitio web sea accesible y adaptable(adaptable) en todos los devices(device): tabletas, smartphones, etc.
+>The adaptability of a web page to the devices
+
+## **¿Que es minificar?**
+Minificar es reducir el tamaño de un fichero sin perder funcionalidad. Esto lo hace eliminando todos los espacios, saltos de línea, tabulaciones y comentarios, creando un fichero (en la mayoría de casos) de una sola línea.
+
+Una version minificada de un archivo tiene consigo la extension .min, por ejemplo: _nombreDelArchivo_.min.txt
+
+La ventaja de esto es que los archivos minificados se cargan mas rapido a un archivo html.
+
+## **¿Que es un fichero?**
+Un fichero(file) es igual a un archivo(archive)
+
+## **¿Que es una ventana modal o cuadro dialogo (modal window or lightbox(caja lijera))?**
+Son cuadros que aparecen sobre la página, bloqueando todas las funciones para concentrar el foco en una acción particular.
+
+## **!important**
+El important dentro de un atributo adelante del value nos permite indicar mayor gerarquia a ese atributo sobre otros del mismo tipo
+
+## **Grid Sytem**
+Es un servicio o sistema de BOOTSTARP que nos ayuda a acomodar el contenido conforme el viewport se va modificando. Nos permite distribuir el contenido.
+
+```html
+<style media="screen">
+  .sq {
+    border: 2px solid black;
+  }
+
+</style>
+
+<div>
+  <div class="col-sm-1 sq">col 1</div>
+  <div class="col-sm-1 sq">col 2</div>
+  <div class="col-sm-1 sq">col 3</div>
+  <div class="col-sm-1 sq">col 4</div>
+</div>
+```
+
+## **FrameWork CSS**
+>* It means a bunch of defined styles, such as a button modifited
+>* Los etilos definidos por un framework podran modificarse.
+>* Hay algunos estilos que contienen el atributo importan lo cual hace dificil modificar (modifide) ese estilo.
+
+ 
+
+### Algunos FrameWorks CSS
+![topCSSFrameworks](../_src/assets/02-CSS/topCSSFrameworks.jpg)
+
+## **Bootstrap**
+### **_Initial Bootstrap_**
+La pagina [BOOTSTRAP.COM](https://getbootstrap.com/docs/5.3/getting-started/introduction/) nos proporciona las intrucciones para inicializar bootstrap a html.
+ 
+# **CSS Avanzado**
 
 En esta Lesson se verán los siguientes temas:
 
 * Frameworks CSS
 * CSS Preprocessors
 
-## Frameworks CSS
+## **Frameworks CSS**
 
 En primer lugar un 'Framework' es un marco de referencia o marco de trabajo que nos provee distintas herramientas que se puede utilizar para facilitar el desarrollo de aplicaciones, ofreciéndonos una forma estándar y por lo general más simple para programar. En particular para el caso de un 'Framework CSS', se refiere a un conjunto de estilos predefinidos que pueden utilizarse para elaborar una interfaz de usuario atractiva sin necesidad de tener que definir a mano todas y cada una de las propiedades CSS de nuestros elementos HTML.
 
@@ -38,8 +92,8 @@ Existen una gran variedad de Frameworks CSS pero entre los más utilizados en la
 * Ulkit
 * Semantic UI
 
-### Bootstrap
-
+La desventaje es que, perdemos experiencia en codificar en css. 
+* Si se pueden modificar los elementos que nos ofrecen los FrameWorks
 En esta lesson nos centraremos en Bootstrap que es el más utilizado de ellos. Las ventajas que nos ofrece este Framework es que ya tiene componentes con estilos predefinidos que podemos reutilizar para ganar tiempo.
 
 Por ejemplo supongamos que quisiéramos crear en nuestra página web un botón rojo con bordes redondeados y texto blanco:
@@ -61,7 +115,7 @@ Por ejemplo supongamos que quisiéramos crear en nuestra página web un botón r
 ```
 
 Con ese código lo que obtendríamos es lo siguiente:
-![alt text](/_src/assets/02-CSS/boton-rojo.png)
+![alt text](../_src/assets/02-CSS/boton-rojo.png)
 
 Ahora bien, vamos a intentar lo mismo utilizando Bootstrap. Para ello necesitaremos agregar a nuestro HTML una referencia a la librería de Bootstrap para poder utilizar todos sus beneficios.
 
@@ -88,7 +142,7 @@ Ahora bien, vamos a intentar lo mismo utilizando Bootstrap. Para ello necesitare
 *Veamos que en el header se agrego un link hacía Bootstrap*
 
 Veamos ahora como quedó nuestra página:
-![alt text](/_src/assets/02-CSS/boton-bootstrap.png)
+![alt text](../_src/assets/02-CSS/boton-bootstrap.png)
 
 No tuvimos que definir ninguna propiedad CSS para nuestro nuevo botón sino que simplemente le asignamos las clases `btn` y `btn-danger` y Bootstrap se encargó del resto.
 
@@ -106,11 +160,14 @@ Para ver que esto no es magia, lo que está pasando por detrás es que existe un
 
 En la página de [Bootstrap](https://getbootstrap.com/) podrán encontrar muchos componentes que pueden reutilizar en sus páginas web.
 
-#### Responsive Design
+#### **Responsive Design**
 
 Cuando queremos que nuestra página se vea 'linda' en cualquier dispositivo o cambie algunas características ya sea en una computadora, en un teléfono celular, en una tablet o incluso en un televisor smart, necesitamos hacer algunos ajustes a las propiedades de los elementos en función del dispositivo.
 
-##### CSS Media Queries
+##### **CSS Media Queries(consultas)**
+En desarrollo web, las media queries son un módulo CSS3 que permite adaptar la representación del contenido a características del dispositivo como la resolución de pantalla.
+
+> _@media_ es un selector que indica a html lo siguiente "Segun el tamaño de pantalla yo te voy a redefinir cierta informacion"
 
 Para poder determinar que una propiedad solo se aplique en función del tamaño de la pantalla del dispositivo tenemos la posibilidad de usar `CSS Media Queries`.
 
@@ -142,21 +199,21 @@ body {
 
 El resultado obtenido sería el siguiente:
 
-<div style="text-align:center"><img src="/_src/assets/02-CSS/css-media-query.gif" alt="imagen"/></div>
+<div style="text-align:center"><img src="../_src/assets/02-CSS/css-media-query.gif" alt="imagen"/></div>
 
 
 ##### Bootrstap
 
 Supongamos ahora que queremos cambiar la cantidad de columnas que se muestren en función de la pantalla para que nos queden cuatro columnas en pantallas grandes, dos en medianas y una en pequeñas:
 
-<div style="text-align:center"><img alt="no-box"src="/_src/assets/02-CSS/esquema-col.png" alt="imagen"/></div>
+<div style="text-align:center"><img alt="no-box"src="../_src/assets/02-CSS/esquema-col.png" alt="imagen"/></div>
 <br>
 
 Podríamos realizarlo con CSS Media Queries similar al ejemplo anterior. Así que si quieren pueden intentarlo (Es un buen ejercicio para practicar lo que ya saben de CSS con esta nueva herramienta).
 
 Pero ahora vamos a ver como solucionar esto utilizando el Framework que explicamos más arriba `Bootstrap`.
 
-###### Grid System
+###### **Grid System**
 
 Bootstrap ya tiene integrado un sistema de grillas implementado a partir de flexbox que nos va a facilitar la tarea. Para ello utiliza cinco clases ya definidas:
 
@@ -168,14 +225,14 @@ Bootstrap ya tiene integrado un sistema de grillas implementado a partir de flex
 
 El sistema de grilla de Bootstrap permite colocar hasta una suma de 12 'espacios' por fila distribuyéndolos de la forma que se quiera, ya sea colocando 12 columnas de 1 'espacio', 2 columnas de 6 'espacios' o cualquier variante de combinaciones:
 
- <div style="text-align:center"><img alt="no-box" src="/_src/assets/02-CSS/bootstrap-col-grid.png" alt="imagen"/></div>
+ <div style="text-align:center"><img alt="no-box" src="../_src/assets/02-CSS/bootstrap-col-grid.png" alt="imagen"/></div>
  <br>
 
 *También existe la opción de dejar que Bootrstap identifique la cantidad de columnas que hay y a partir de ello le asigne el mismo ancho a cada una hasta completar la totalidad de la fila (Siempre recordando que el máximo es de 12). Para ello se utiliza simplemente la clase `.col` en cada columna*
 
 Utilizando simplemente esas clases podemos crear múltiples tipos de grillas que se adapten a nuestras pantallas.
 
-<div style="text-align:center"><img src="/_src/assets/02-CSS/bootstrap-grid.gif" alt="imagen"/></div>
+<div style="text-align:center"><img src="../_src/assets/02-CSS/bootstrap-grid.gif" alt="imagen"/></div>
 <br>
 
 *En el gif de arriba podemos ver como en función del ancho de la pantalla va cambiando la cantidad de columnas*
