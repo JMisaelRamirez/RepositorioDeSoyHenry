@@ -15,9 +15,9 @@
 
 A partir de una paǵina que simula una noticia sobre _Música 8D_ es necesario terminar la parte de la barra de navegación y el header como así también agregar los estlilos necesarios para que se vea agradable en un teléfono celular. El resultado final debeŕia ser el siguiente:
 
-[Diseño Desktop](responsive-web/diseño/home-desktop.png)
+![Diseño Desktop](responsive-web/diseño/home-desktop.png)
 
-[Diseño Mobile](responsive-web/diseño/home-mobile.png)
+![Diseño Mobile](responsive-web/diseño/home-mobile.png)
 
 
 #### Configuración de LESS (Preprocessador)
@@ -51,7 +51,7 @@ A partir de una paǵina que simula una noticia sobre _Música 8D_ es necesario t
 
 * Agregar el viewport meta tag dentro del head del archivo index.html
 
-* Observar cómo debe quedar el [diseño final para Desktop](responsive-web/diseño/home-desktop.png). Es necesario crear la barra de navegación y la imagen del header que están faltando. En el archivo `index.html` se indica en que partes debe ir cada uno
+* Observar cómo debe quedar el ![diseño final para Desktop](responsive-web/diseño/home-desktop.png). Es necesario crear la barra de navegación y la imagen del header que están faltando. En el archivo `index.html` se indica en que partes debe ir cada uno
 
 * Utilizar el archivo `navigation.less` para darle el estilo correspondiente a la barra de navegación
 

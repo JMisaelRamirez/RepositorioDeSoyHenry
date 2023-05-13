@@ -8,7 +8,7 @@ Antes de desarollar nuestro codigo de front-end necesitaremos un servidor al que
 Una vez que hayas instalado NodeJs, ve al directorio `04-ajax/homework` desde la terminal y corre estos dos comandos:
 ```shell
 npm install
-npm start # Este ultimo comando no nos retornara la terminal, sino que quedara ejecutando. Necesitamos dejarlo abierto mientras trabajamos
+npm start # Este ultimo comando no nos retornara la terminal, sino que quedara ejecutando. Necesitamos dejarlo abierto mientras trabajamos. A esto se llama node serve.js
 ```
 
 #### Tareas:

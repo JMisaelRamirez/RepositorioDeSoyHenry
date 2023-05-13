@@ -2,27 +2,112 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-  <title>HomeWork Ajax</title>
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>-->
 </head>
 <body>
-  <button id='boton'>Ver Amigos</button>
-  <ul id='lista'>
-  </ul>
 
-  <h2>Ver Amigos</h2>
-  <img src='https://upload.wikimedia.org/wikipedia/commons/c/c7/Loading_2.gif' />
-  <hr>
-  <input id='input'></input>
-  <button id='search'>Buscar</button>
-  <span id='amigo'></span>
+  <section class="misAmigos">
+    <h2>Mis Amigos!</h2>
+    <button class="btnVerAmigos">Ver Amigos</button>
+    <button class="btnOcultar">Ocultar amigos</button>
+    <ul class="contenedorDeAmigos">
+    </ul>
+  </section>
 
-  <hr>
-  <input id='inputDelete'></input>
-  <button id='delete'>Delete</button>
-  <span id='success'></span>
-  <script src="index.js"></script>
+  <section class="verAmigo">
+    <h2>Ver Amigo</h2>
+    <input class="inId" name="id" type="text" placeholder="id de amigo">
+    <button class="btnBuscarId">Buscar Amigo por id</button>
+    <span class="amigoBuscado"></span>
+  </section>
+
+  <section class="eliminarAmigo">
+    <h2>Eliminar Amigo</h2>
+    <input class="inAmigo" name="amigo" type="text" placeholder="id de amigo">
+    <button class="btnBorrar">Borrar Amigo</button>
+    <span class="amigoEliminado"></span>
+  </section>
+
+  <script>
+    let showFriends = () => {
+      $('.contenedorDeAmigos').empty();
+      $.get('http://localhost:5000/amigos',function(friends){
+        friends.forEach(element => {
+        $(`<li>${element.id}: ${element.name} <button onclick="eliminateFriend(${element.id})">X</button></li>`).appendTo('.contenedorDeAmigos')
+        });
+      })
+    }
+
+    let eliminateFriend = (idX) => {
+      let id;
+      Number === idX
+      console.log(typeof idX)
+      if(typeof idX === 'number'){
+        id = idX;
+        console.log('primero')
+      }else{
+        id = $('.inAmigo').val(); // es lo mismo -> $('.inAmigo').val();
+        console.log('segundo')
+      }
+      console.log(id);
+      $('.amigoEliminado').empty();
+      $('.inAmigo').val('');
+      let data;
+      $.get(`http://localhost:5000/amigos/${id}`,function(friend){
+        data = friend;
+        console.log(data)
+      })
+      if (id) {
+        $.ajax({
+        type: 'DELETE',
+        url: `http://localhost:5000/amigos/${id}`,
+        success: function () {
+          $('.amigoEliminado').text(`El Amigo "${data.id}: ${data.name}" ha sido eliminado`);
+          showFriends();
+        }
+        })
+      }else{
+        $('.amigoEliminado').text('Ingresa un ID')
+      }
+    }
+    
+
+    //VerAmigos
+    $('.btnVerAmigos').click(showFriends);
+    //OcualtarAmigos
+    $('.btnOcultar').click(function(){
+      $('.contenedorDeAmigos').empty();
+    });
+    //BuscarMAigos
+    $('.btnBuscarId').click(function(){
+      let id = $('.inId').val();
+      $('.inId').val('');
+      if(id){
+        $.get(`http://localhost:5000/amigos/${id}`,function(data){
+        $('.amigoBuscado').text(`Tu amigo es: ${data.name}`)
+        })
+      }else{
+        $('.amigoBuscado').text('Debes de ingresar un Id');
+      }
+    })
+    // Borrar Amigos 
+    $('.btnBorrar').click(eliminateFriend)
+  </script>
+
 </body>
 </html>
+
+<!--<!DOCTYPE html>
+
+
+-->
+
+
+
+
+
+

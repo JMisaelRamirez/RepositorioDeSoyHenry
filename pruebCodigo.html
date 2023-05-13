@@ -1,2 +1,42 @@
-<h1>Hola mundo como</h1>
-<p>Hola mundo como</p>
+<html lang="es-MX">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>AJAX DEMO</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  </head>
+  <body>
+    <div>
+        <button class="all">Traer todos los pedidos</button>
+        <button class="pedidos">Consultar pedidos</button>
+        <input name="index" type="text"/>
+        <button class="consulta">Consulta el pedido indicado</button>
+    </div>
+    
+    <script>
+        $('.pedidos').click(function(){
+            $.get('https://jsonplaceholder.typicode.com/posts',function(data){
+                data.forEach(element => {
+                    $(`<div id="${element.id}">
+                    <p>id: ${element.id}</p>
+                    <p>title: ${element.title}</p>
+                    <p>body: ${element.body}</p>
+                    </div>`).appendTo('body')
+                });
+            })
+        })
+        $('.consulta').click(function(){
+            let input = $('input');
+            $.get(`https://jsonplaceholder.typicode.com/posts/${input[0].value}`, function(data){
+                input[0].value = '';
+                $(`<div id="${data.id}">
+                    <p>id: ${data.id}</p>
+                    <p>title: ${data.title}</p>
+                    <p>body: ${data.body}</p>
+                    </div>`).appendTo('body');
+            })
+            
+            
+        })
+    </script>
+  </body>
+</html>

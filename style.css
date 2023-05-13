@@ -1,3 +1,23 @@
-.clasePrueba {
-    border: 2px solid black;
+p, div, span, a, ul, li {
+    background-color: red;
+}
+
+a {
+    background-color: blue;
+    cursor: pointer;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+ul {
+    padding: 3px;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    flex-direction: column-reverse;
+}
+
+a {
+    margin: 20px;
+    margin-top: 0;
+    margin-bottom: 0;
 }

@@ -1,1 +1,16 @@
 // Mixins acá
+.buttonsStyle(@color-button: @btn-bg-color,@radio-border: 5px) {
+
+    background-color: @color-button;
+    border-radius: @radio-border;
+    color: whitesmoke;
+    display: inline-block;
+    padding: 8px;
+    font-size: medium;
+    border: 1px solid @color-button;
+    cursor: pointer;
+    &:hover{
+        color: black;
+        background-color: @wild-sand;
+    }
+}

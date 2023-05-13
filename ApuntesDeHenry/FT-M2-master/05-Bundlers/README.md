@@ -19,7 +19,90 @@
   </tr>
 </table>
 
-# Módulos y Bundlers
+# **Módulos y Bundlers**
+# DUDAS
+# NOTAS RAPIDAS
+> .indexOf() -> 
+# NOTAS
+## **Que es un modulo**
+Un modulo puede ser una funcion. Un modulo puede ser una funcion que manda a llamar cinco funciones mas, o modulos. Un modulo busca solucionar una tarea en especifica. 
+
+## **¿Reglas para utilizar los modulos?**
+
+Supongamos tenemos varios archivos .js
+```javascript
+// Archivo 1.js
+//////////////////////////
+let toDo = [];
+// Para permitir que otros modulos dependan de este modulo, tenemos qu ehabilidad que variables o funciones estaran disponibles para ser utilizadas en otros modulos. 
+// Permite -> toDO
+//////////////////////////
+// Archivo 2.js
+//////////////////////////
+toDo.push('nota');
+// Para poder usar toDo tenemos que solicitar a la variable toDo.
+//////////////////////////
+// Archivo 3.js
+//////////////////////////
+let saludo = "hola";
+// SOlicita ->  toDo
+// Permite -> Saludo
+//////////////////////////
+// Archivo 4.js
+/////////////////////////
+// solicita -> saludo de archivo 3.js. 
+// No quiere decir que al solicitar saludo de archivo 3.js tambien heredara todDO
+//////////////////////////
+```
+La siguiente imagen muestra la forma de solicitar y permitir informacion. import -> solicitar (requierd), importacion. module.exports -> exportar, permitir 
+![dependencias](../_src/assets/05-Bundlers/dependencias.png)
+
+## **patron de modulos IIFE**
+## **CommonJS, como usar export. y require('')**
+```javascript
+// nombres.js
+let names = ['Jenn','Misael','Julio'];
+let alumno = 'Toni';
+let alumna = 'Mati';
+let amountOfStudents = names.length + 1; 
+
+exports.alumnoAux = alumno;
+exports.name = function name (number) {return names[number];};
+exports.number = function number (name) {return names.indexOf(name);};
+exports.cantidadDeAlumnos = amountOfStudents;
+
+// Exports es un objeto.
+// exports {
+//          alumnoAux: alumno, 
+//          name: function, 
+//          number: function,
+//          cantidadDeAlumnos: names.length + 1
+//         }
+ 
+//////////////////////////////////////////////////////////////////
+// index.js
+let a = require('./pruebaCodigos');
+// con la funcion require('') solicitamos los elementos disponibles
+// del archivo pruebaCodido.js. El valor es un objeto, por lo tanto ->
+// a {
+//      alumnoAux: alumno, 
+//      name: function, 
+//      number: function,
+//      cantidadDeAlumnos: names.length + 1
+//   }
+
+console.log(a.alumnoAux) // >> 'Toni'
+console.log(a.name) // >> function: name
+console.log(a.name(1)) // >> 'Misael'
+console.log(a.number('Jenn')) // 0
+```
+## **module.export vs esports**
+Con module.export podemos agregar cada elemento al objeto export de la siguiente manera: 
+```javascrit
+
+```   
+
+# APUNTE
 
 Cuando desarrollamos, queremos que la estructura de nuestro programa/codigo sea lo mas transparente posible, facil de explicar y que cada parte cumpla una tarea definida.
 
@@ -187,7 +270,7 @@ Bien, ahora que sabemos algo sobre módulos, veamos cómo estos revolucionaron l
 
 Como sabemos, la forma de importar librerías (que a su vez son módulos) en HTML es la siguiente:
 
-![scripts](/_src/assets/05-Bundlers/scripts.jpeg)
+![scripts](../_src/assets/05-Bundlers/scripts.jpeg)
 
 Si pensamos en detalle que sucede cuando importamos cada uno de esos scripts, veremos que básicamente todos terminan cayendo al mismo contexto, el global. Para salvar esto, las librerías básicamente elegían arbitrariamente un nombre de variable donde exponer su funcionalidad. Por ejemplo, `jQuery` utilizaba el signo `$`. Ahora bien, si otra librería decidía utilizar el mismo nombre de variable para su interfaz, tendríamos un conflicto, y ambas librerías no podrían ser usadas en el mismo HTML.
 
@@ -195,7 +278,7 @@ Al principio, sólo se importaba una cantidad pequeñas de librerías para el fr
 
 Acá aparecieron los **Module Bundlers**. Como por ejemplo: `Browserify`, `Webpack`, `Rollup`, etc... Básicamente lo que hacen es ejecutar un proceso que lee todas las dependencias de nuestro proyecto, y luego genera un archivo JS que contiene todos los módulos necesarios que podemos incluir en nuestro HTML.
 
-![Dependecy Graph](/_src/assets/05-Bundlers/graph.png)
+![Dependecy Graph](../_src/assets/05-Bundlers/graph.png)
 
 Hay dos cosas etapas en tarea de un Bundler:
 

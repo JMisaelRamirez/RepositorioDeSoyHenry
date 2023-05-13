@@ -20,23 +20,10 @@
 </table>
 
 
+# **Dudas**
+
+
 # **NOTAS**
-> toDoText.addEventListener('click', completeToDo); -> Este tipo de eventos se establecen de forma sincronica. Osea, se activan cada vez que sucede el evento no immporta donde esten definidos
-
-> Una manera de entender el metodo `map()` 
-```javascript
-let array = [1, 2, 3, 4, 5]
-let arrayModi = array.map(operation)
-
-function operation(value, index, arr){
-    return value * 2;
-}
-
-Output: 
-array: [1, 2, 3, 4, 5]
-arrayModi: [2, 4, 6, 8, 10]
-```
-
 
 ## **Que es el DOM**
 El Document Object Model (DOM) es una estructura de árbol que representa el contenido HTML de una página web. Permite a los desarrolladores acceder y manipular el contenido de una página web usando lenguajes de programación como JavaScript.
@@ -80,6 +67,15 @@ Por otro lado, el parseo es el proceso de analizar y dividir el código fuente d
 
 En resumen, el motor del navegador es un software que interpreta y renderiza el código HTML, CSS y JavaScript de una página web, mientras que el parseo es el proceso de analizar y dividir el código fuente de una página web en diferentes componentes. Ambos son esenciales para el correcto funcionamiento y visualización de una página web en un navegador.
 
+## **CSS PreProcessors**
+Los preprocesadores nos ayudaran a definir al css de forma mas legible y facil de entender, esto se logra, gracias a que los preprocesadores añadiran caracteristicas como variables, mixins, selectores anidadosm entre otros.
+Un ejemplo de estos es el `https://lesscss.org/`. si quisieramos o tendriamos dudas acerca de lees nos dirigimos a la documentacion.
+
+![logoLess](/ApuntesDeHenry/FT-M2-master/_src/assets/02-CSS/logoLess.JPG)
+
+Uno de los beneficios de los preprocesadores, es que no facilita en la modificacion del codigo, si tuvieramos que modificar el valor o el nombre de cualquier elemento varias veces, lo mejor seria guardar ese nombre en una variable y asi al cambiar la variable se cambia todo. 
+
+En el hambito de los preprocesadores tambien existe el hosting (lassy evaluation). Cuando hacemos importaciones el lassy evaluaton no aplica para estas. 
 
 
 # DOM

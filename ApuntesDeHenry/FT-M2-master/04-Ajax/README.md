@@ -19,8 +19,181 @@
   </tr>
 </table>
 
-# AJAX
+# **AJAX**
+# DUDAS
+# NOTAS RAPIDAS
+> El concepto de promesas en java script esta aplicado a solicitar o mandar informacion al server. Las promesas nos permiten trabajar con tareas en paralelo que demoraran tiempo. 
 
+> XML es otro formato de mandar informacion.
+
+> Lo archivos .json se manipulan como objetos.  
+
+> XML es un archivo que contiene informacion y nos ayuda a mandar y recibir infromacion de un lado a otro. 
+
+> EL ajax nos ayudara a tener comunicacion del servidor al cliente y viceversa sin que tengamos que refrescar constantemente la pagina web.
+Ajax va a trabajar con solicitudes asincronas.Ajax nos va a permitir que no haya una recarga constante como se hacia anteriormente. Ajax son datos asincronos sin necesidad de recargar la pagina.
+
+> Para las free fake APIs online solo se puede utilizar el elemento get, mas no post, put y delete. Para los demas elementos se utiliza postman o insomnia como API
+
+> Los selectores getElementsByClassName no son necesarios si utilizamos AJAX, en AJAX se utiliza el $('') para seleccionar un elemento y &.get('',function(){}) para indicar un metodo http.
+
+> Los datos de una API son objetos. 
+
+> En AJAX el .value de un input se define como acontinuacion -> input[0].value
+
+> Algunos metodos importantes: `$('').empty()` -> Nos permite vaciar una etiqueta padre, eliminar sus hijos, `$('').val('')` -> Nos permite obtener el valor de una etiqueta input, `$('').text('')` -> Nos permite agregar contenido (texto) a la etiqueta padre, `$('').apend('')` -> Agrega el contenido que se encuentra en comillas al elemento seleccionado. `$('').apendTo('')` -> Agrega el contenido del selector al elemento indicado en el argumento. 
+
+> ¡NO ALMACENAR LA DATA DE UNA API EN UNA VARIABLE POR QUE SINO AL ELIMINAR
+LOS ELEMENTOS NO PODREMOS VISUALIZAR LOS CAMBIOS!
+
+> El metodo oneclick='' dentro de una etiqueta button nos permite realizar una
+accion al presionar el boton. La funcion es la que se establece en comillas.
+
+> AJAX se maneja con http. 
+
+> HTTP (hyper transfer protocol)
+
+> No podemos ejecutar un metodo http dentro de otro metodo http.
+
+# NOTAS
+## **¿Que es un servidor?**
+Un servidor provee informacion y podemos ingresar a el nueva informacion. El servidor seria como el gabinete de archivos y la base de dats los folderes.El servidor se encarga de hacer ña accion y de guardar o solicitar info. 
+## **¿Que es una Web SPA (single page aplication)?**
+Es una pagina el cual todo el contenido esta en un solo archivo HTML, es decir, solo se carga un archivo HTML. Esto hace que estas paginas sean mucho mas rapidas al momento de cargar. 
+Estos SPA tienen varias vistas, no varias paginas. Aun que solo tenemos 1 pagina podemos tener varias vistas, esto serian los diferentes apartados qeu tiene la pagina WEB, a vista del usuario estas diferentes vistas serian como si fueran las diferentes paginas solo que cargan mucho mas rapido. Aun asi, dicho lo anterior la URL va cambiado a medida que navegamos en la pagina web, el asunto es que es la misma pagina solo se sustituye el contenido, dicho lo anterior podriamos no pner la URL pero es una buena practica colocarla ya que el navegador va guardando en historial de todas las pagina por las que hemos pasado, asi el usuario podria tirar hacia atras o hacia adelante con las flechitas del navegador. A las SPAs les da igual con que esta echo el backend. La compatibilidad de las SPA con el CEO no es del todo buena al estar todo el conteido en un solo archivo y al cargagrse el contenido dinamicament, osea, no se esta en esa pagina. Si requerimos una idexacion con los buscadorres de google esta no es la mejor opcion y tendriamos que tirar por una pagina web tradicional, este problema lo podriamos solucionar con el server site rendering. Por que es un problema con lo de los buscadores de google, es un problema por que los navegadores de google primero observan los archivos .js y lo que te nemos con los spa solo es un archivo html 
+![SPAs](../_src/assets/04-Ajax/SPAs.jpg) 
+
+## **¿Que es cargar contenido dinamicamente?**
+Es cuando el cliente solicita (requested) los nuevos contenidos al servidor y se carga solo esa parte que cambia de la web. 
+## **¿Life Cycle Web Page?**
+We are going to mention only 2 life cycles of a web page. One its call Traditional Page Life Cycle and the other one its call SPA(single page aplication) life cycle. 
+
+![LifeCycle](../_src/assets/04-Ajax/LifeCycle.JPG)
+## **File .Json and .XML, ¿What are they?**
+.Json(JavaScript Object Notation) Se basa en el concepto ``clave-valor` donde para cada clave existente existe un valor.
+Un conjunto de claves y valores conforman un objeto, que en json se representa con {}.
+```javascript
+{
+  "nombre": "Misael",
+  "profesion": "Ingeniero MEcatronico",
+  "edad": 25
+}
+```
+
+Otro ejemplo es un archivo json que contenga a varios clientes. 
+
+```javascript
+{
+  "empInfo": {
+    "emp": [
+      {
+        "nombre": "Misael",
+        "rango": "Tecnico",
+        "edad": 30
+      },
+      {
+        "nombre": "Jesus",
+        "rango": "Carpintero",
+        "edad": 30
+      },
+      {
+        "nombre": "Julio",
+        "rango": "MaestroCarpintero",
+        "edad": 30
+      }
+    ]
+  } 
+}
+```
+> Partiendo del codigo json anterior, cada palabra esta envuelto por comillas, exepto los nuemeros. El valor de una clave puede ser de igual forma un objeto o incluso un arreglo de objetos. 
+
+Para la parte de XML, lo unico que cambia es la sintaxys.
+
+![XML](../_src/assets/04-Ajax/XML.JPG)
+
+## ¿HTTP Methods?
+La forma de comunicar al servidor con el cliente es por medio de los metodos HTTP. HTTP protocol son las reglas de comunicacion entre el servidor y el cliente. Cuando el browser le mande una intruccion , ejemplo, del metodo de tipo GET el servidor ya sabe que lo que debe de hacer es buscar en el servidor. 
+
+![HTTP Methods](../_src/assets/04-Ajax/HTTPMethods.JPG)
+El cliente hace una peticion, el servidor lo interpreta y lo manda a traer a la base de datos y la base de datos lo manda a cliente. AHora, como se traduce cada peticion
+
+![HTTP Methods Traducido](../_src/assets/04-Ajax/HTTPMethodsTraducido.JPG)
+
+## ¿Como funciona AJAX?
+
+![AJAX](../_src/assets/04-Ajax/AJAX.JPG)
+
+## ¿Como implementar AJAX archivo HTML?
+1. Primero indicamos a HTMl que utilizaremos la tecnologia AJAX con la libreria Jquery. Visitamos jquary ajaxx en google. Posterioemnte nos vamos a download y copiamos todo el contenido del primer link y no guardamos en un archivo .js. Despues lo agregamos al contenido html atravez de un  elemento script.
+2. Despues buscamos un servidor (un API) que nos proporcione informacion. Hasta esta etapa del curso no hemos creado un servidor, por lo que utilizaremos una free fake API, ingresamos a jsonplaceholder y nos dirigimos a Resources. Para hacer uso de esa api, solo utilizamos la url de ese link de la API dentro de nuestro contenido HTMl. 
+3. Empezamos a codear atravez de AJAX para solicitar datos de forma dinamica. 
+```html
+<html lang="es-MX">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>AJAX DEMO</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  </head>
+  <body>
+    <div>
+        <button class="all">Traer todos los pedidos</button>
+        <button class="pedidos">Consultar pedidos</button>
+        <input name="index" type="text"/>
+        <button class="consulta">Consulta el pedido indicado</button>
+    </div>
+    
+    <script>
+        $('.pedidos').click(function(){
+            $.get('https://jsonplaceholder.typicode.com/posts',function(data){
+                data.forEach(element => {
+                    $(`<div id="${element.id}">
+                    <p>id: ${element.id}</p>
+                    <p>title: ${element.title}</p>
+                    <p>body: ${element.body}</p>
+                    </div>`).appendTo('body')
+                });
+            })
+        })
+        $('.consulta').click(function(){
+            let input = $('input');
+            $.get(`https://jsonplaceholder.typicode.com/posts/${input[0].value}`, function(data){
+                input[0].value = '';
+                $(`<div id="${data.id}">
+                    <p>id: ${data.id}</p>
+                    <p>title: ${data.title}</p>
+                    <p>body: ${data.body}</p>
+                    </div>`).appendTo('body');
+            })
+        })
+    </script>
+  </body>
+</html>
+```
+
+## **HTTP METHODS**
+![metodoHTTP](../_src/assets/04-Ajax/metodosHTTP.JPG)
+## **Como utilizar POST, PUT and DELETE o tambien GET de otra forma**
+```javascript
+$.ajax({
+    type: "POST/GET/PUT/DELETE",
+    url: url,
+    data: data,
+    success: function(data){},
+    dataType: dataType
+});
+```
+![postElements](../_src/assets/04-Ajax/postElements.JPG)
+
+# AJAX
+```html
+<script>
+  $(".pedidos").click(function(){
+    $.get("URL",function(data){
+      data.foreach(e => cosole.log(e))
+    })
+  })
+</script>
+```
 ## Que es  AJAX?
 
 AJAX son las siglas de Asynchronous JavaScript and XML. XML es raramente relevante, pero cuando desarrollamos aplicaciones web, usamos Ajax para hacer cosas asincrónicas como actualizar una página, hacer acciones, etc.
@@ -43,7 +216,7 @@ AJAX se basa en un montón de tecnologías. No tienes que ser un experto en toda
 
 Piensa en toda tu aplicación web como un restaurante de comida rápida. Tú eres el cajero, la persona en las primeras líneas. Manejas las **solicitudes** de los cliente
 
-![no-box](/_src/assets/04-Ajax/image-1.png)
+![no-box](../_src\assets\04-Ajax\image-1.png)
 
 Si miras este diagrama, puedo ver tres trabajos separados que deben hacerse.
 
@@ -53,7 +226,7 @@ Si miras este diagrama, puedo ver tres trabajos separados que deben hacerse.
 
 Sin embargo, si no tuvieras AJAX, sólo se te permitiría procesar un pedido a la vez de principio a fin! Tendrías que tomar el pedido... luego cobrar al cliente... luego sentarte ahí sin hacer nada mientras la gente en la cocina cocina cocina la comida... y luego seguir esperando mientras el equipo de preparación de la comida la empaqueta. Sólo podrías tomar el siguiente pedido después de todo eso.
 
-![no-box](/_src/assets/04-Ajax/image-2.png)
+![no-box](../_src/assets/04-Ajax/image-2.png)
 
 Eso es una mala experiencia para el usuario! Ya no podrías llamarlo "comida rápida". En su lugar, tendrías que llamarlo "comida mediocre"... o algo así.
 
@@ -63,7 +236,7 @@ Los clientes pueden seguir haciendo pedidos, y no es necesario sentarse allí mi
 
 Esto ciertamente introduce cierta complejidad. Ahora tienes múltiples especializaciones dentro del restaurante. Además, los pedidos se están manejando a ritmos diferentes. Pero, crea una experiencia de usuario mucho mejor.
 
-![no-box](/_src/assets/04-Ajax/image-3.png)
+![no-box](../_src/assets/04-Ajax/image-3.png)
 
 Probablemente has  visto esto en acción en un restaurante. Una persona está trabajando en la máquina de papas fritas. Una persona está manejando la parrilla. Cuando llega un pedido, el cajero puede comunicarse instantáneamente con ambos y volver a tomar los pedidos.
 
@@ -104,7 +277,7 @@ Por las papas fritas, puede que sólo necesitemos saberlo:
 1. El tamaño de las patatas
 2. El precio
 
-![no-box](/_src/assets/04-Ajax/image-4.png)
+![no-box](../_src/assets/04-Ajax/image-4.png)
 
 Veamos un ejemplo de un combo de: una hamburguesa con queso con una Pepsi que cuesta 6 dólares. Esto es lo que parece en JavaScript.
 
@@ -114,7 +287,8 @@ let order = {
   drink: 'Pepsi',
   price: 6, 
   exceptions: '' 
-};$.post('/comboMeal', order);
+};
+$.post('/comboMeal', order);
 ```
 
 La variable *orden* contiene el contenido del orden. Y luego lo incluimos en el pedido POST para que nuestro personal de cocina sepa qué diablos poner en el combo de comida!
@@ -143,7 +317,8 @@ $('button').click(function(){
      drink: 'Pepsi',
      price: 6,
      exceptions: '' 
-   };$.post('/comboMeal', order, function(){
+   };
+   +$.post('/comboMeal', order, function(){
      alert('Next customer please!'); 
   }); 
 })
@@ -173,7 +348,7 @@ let meal = {
 };$.get('/comboMeal', meal);
 ```
 
-![no-box](/_src/assets/04-Ajax/image-5.png)
+![no-box](../_src/assets/04-Ajax/image-5.png)
 
 También necesitamos un disparador para este. Esta solicitud se activa cuando los clientes responden a tus preguntas como cajero antes de que les entregues la comida. No hay una forma conveniente de representar las preguntas y respuestas con JavaScript. Así que voy a crear otro evento de clic para el botón con la clase "respuesta".
 
@@ -187,7 +362,7 @@ $('.answer').click(function(){
 });
 ```
 
-![no-box](/_src/assets/04-Ajax/image-6.png)
+![no-box](../_src/assets/04-Ajax/image-6.png)
 
 Este también necesita una función de devolución de llamada, porque vamos a recibir lo que estaba contenido en las tres comidas compuestas en el orden 191. Podemos recibir esos datos a través de un parámetro de *datos* en nuestra llamada de retorno.
 
@@ -211,7 +386,7 @@ $('.answer').click(function(){
 
 El producto final, *datos*, contendría el contenido de las tres comidas combinadas, teóricamente. ¡Depende de cómo esté escrito en el backend!
 
-![no-box](/_src/assets/04-Ajax/image-7.png)
+![no-box](../_src/assets/04-Ajax/image-7.png)
 
 ## Eventos en javascript
 
@@ -260,7 +435,7 @@ Este código ahora se ejecutará cada vez que se active el evento  `click` en el
 
 Antes que nada miremos un dibujo que representa el runtime de v8 (el runtime que usa chrome y node)
 
-![img](/_src/assets/04-Ajax/image-8.png)
+![img](../_src/assets/04-Ajax/image-8.png)
 
 Como se puede ver en la imagen, el engine consiste de dos elementos principales
 
@@ -294,7 +469,7 @@ printSquare(5);
 
 **Los estados del call stack serían:**
 
-![img](/_src/assets/04-Ajax/image-9.png)
+![img](../_src/assets/04-Ajax/image-9.png)
 
 Y que pasa si tenemos una función de esta manera:
 
@@ -306,11 +481,11 @@ function foo() {
 foo();
 ```
 
-![img](/_src/assets/04-Ajax/image-10.png)
+![img](../_src/assets/04-Ajax/image-10.png)
 
 Lo que sucedería es que en algún momento la cantidad de funciones llamadas excede el tamaño del stack , por lo que el navegador mostrará este error:
 
-![img](/_src/assets/04-Ajax/image-13.png)
+![img](../_src/assets/04-Ajax/image-13.png)
 
 Pero qué pasa si llamamos a un timeout o hacemos un request con AJAX a un servidor. Al ser un solo thread, hay un solo call stack y por lo tanto solo se puede ejecutar una cosa a la vez. Es decir el navegador debería congelarse, no podría hacer más nada, no podría renderizar, hasta que la llamada termine de ejecutarse. Sin embargo esto no es asi, javascript es asincrónico y no bloqueante. Esto es gracias al Event Loop.
 
@@ -320,7 +495,7 @@ Algo interesante acerca de javascript, o mejor dicho de los runtimes de javascri
 
 Por lo tanto este es el gráfico que muestra una visión más abarcativa de javascript. En este se puede ver el runtime, más las Web APIs y el callback queue del cual hablaremos más adelante.
 
-![img](/_src/assets/04-Ajax/image-11.png)
+![img](../_src/assets/04-Ajax/image-11.png)
 
 Al haber un solo thread es importante no escribir codigo bloqueante para la UI no quede bloqueada.
 
@@ -363,7 +538,7 @@ Luego de terminar la cuenta regresiva del setTimeout() (que no es ejecutada en e
 
 El flujo en imágenes de todo este trabalenguas seria:
 
-![img](/_src/assets/04-Ajax/image-12.gif)
+![img](../_src/assets/04-Ajax/image-12.gif)
 
 De esta manera se logra que el código sea no bloqueante, en vez de un setTimeout podría ser una llamada a un servidor, en donde habría que esperar que se procese nuestra solicitud y nos envíe una respuesta , el cual sería tiempo ocioso si no contáramos con callbacks asincronicas, de modo que el runtime pueda seguir con otro código. Una vez que la respuesta haya llegado del servidor y Call Stack esté vacío, se podrá procesar la respuesta (mediante la función pasada como callback ) y hacer algo con ella , por ejemplo mostrarla al usuario.
 
@@ -377,6 +552,5 @@ Esto se debe a que el navegador intenta realizar un proceso de renderizado cada 
 
 Lo más probable es que cierre el navegador y nunca más vuelva a entrar a nuestra página. No es algo que queremos que suceda.
 
-## Homework
-
+## HOMEWORK
 Completa la tarea descrita en el archivo [README](https://github.com/soyHenry/FT-M2/blob/master/04-Ajax/homework/README.md)

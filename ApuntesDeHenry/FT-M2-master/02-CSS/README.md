@@ -19,7 +19,43 @@
   </tr>
 </table>
 
-# **Notas**
+# **TAREA**
+## **¿Que es un frameWork?**
+Un framework(marco de trabajao), nos proporciona herramientas para facilitar la creacion de paginas web. Bootstrap en un framework para CSS, este nos proporciona estilos predefinidos para utlizar en HTML y herramientas para facilitar la creacion de las paginas web. 
+
+## **¿Que es el preprocesador?**
+Los preprocesadores es un programa de trabajo que nos permite agregar legibilidad a nuestro codigo CSS lo cual nos ayudara a entender mucho mejor nuestro codigo. Al utilizar los preprocesadores seremos capases de trabajar con variables, funciones, selectores anidados, mixens, entre otros. Cada preprocesador tiene su propia sintaxis. 
+
+## **¿Que es el responsive WebSIte?**
+Se refiere que tan adaptable es un sitio web a diferentes dispositivos electronicos (laptops, cell phones, tablets, etc).
+
+
+# **DUDAS**
+> Indagar en que son las pseudo clases y pseudo elementos. El over poria considerarse como un evento. 
+
+>Explicar como funciona display: flex y aling-items. Checar en instagram de _thefullstackdevs_
+
+>¿Como instalar LESS y sincronisarlo con CSS?
+
+>¿Ver un video sel system grid?
+
+>¿Que son los mixens?
+
+R: Se le llama mixens a los selectores como una funcion dentro de css. Cuando utilizamos un preprocesador (less) al definir un selector, se puede mandar a llamar como una funcion. Tambien se pueden definir los argumentos.
+
+>¿La diferencia entre los mixens y &:extend();?
+
+R:
+:extend() va a pasar exactamente lo mismo, y los mixens se pueden modificar de acuerdo a la definicion de los parametros. 
+
+>@arguments
+
+Es una palabra reservada que permite alinear cada uno de los argumentos. Del mixen
+
+
+
+
+# **NOTAS**
 ## **¿Que es el responsive?**
 Cuando utilizamos el término “responsive” (adaptable), nos referimos principalmente a “responsive design” (diseño web adaptable). Esto significa hacer que un sitio web sea accesible y adaptable(adaptable) en todos los devices(device): tabletas, smartphones, etc.
 >The adaptability of a web page to the devices
@@ -72,8 +108,34 @@ Es un servicio o sistema de BOOTSTARP que nos ayuda a acomodar el contenido conf
 ## **Bootstrap**
 ### **_Initial Bootstrap_**
 La pagina [BOOTSTRAP.COM](https://getbootstrap.com/docs/5.3/getting-started/introduction/) nos proporciona las intrucciones para inicializar bootstrap a html.
- 
-# **CSS Avanzado**
+
+# **NOTAS RAPIDAS**
+> toDoText.addEventListener('click', completeToDo); -> Este tipo de eventos se establecen de forma sincronica. Osea, se activan cada vez que sucede el evento no immporta donde esten definidos
+
+> Una manera de entender el metodo `map()` 
+```javascript
+let array = [1, 2, 3, 4, 5]
+let arrayModi = array.map(operation)
+
+function operation(value, index, arr){
+    return value * 2;
+}
+
+Output: 
+array: [1, 2, 3, 4, 5]
+arrayModi: [2, 4, 6, 8, 10]
+```
+
+> los metodos map y filter devuelven un nuevo arreglo.
+
+> Apendiar es añadiendo. Append - Añadir
+> Hay otro evventLisener que se llama PressKey y evaluar si se aprita
+> cuando se utiliza el atributo target en un event listener es para hacer referencia a la etiqueta a la cual se le hizo click. Ejemplo `event.target`
+
+>Diferencia entre `h1.clase1` & `h1 .clase1`. La primera hace mencion a una misma etique, se lee: la etiqueta h1 cque contenga la clase con el nombre "clase1". El otro ejemplo habla de direntes etiquetas. Los elementos que contengan la clase "clase1" dentro de una etiqueta h1. 
+
+
+# **CLASE: CSS Avanzado**
 
 En esta Lesson se verán los siguientes temas:
 
@@ -608,6 +670,254 @@ Por último también es posible, heredar/compartir las propiedades de un selecto
 *En este caso el botón de report y de submit extienden las propiedades del botón básico manteniendo todas sus propiedades pero agregándole algunas más que son propias de ellas*
 
 Con esto cubrimos la mayor parte de las funcionalidades agregadas por LESS pero existen otras que para aquel que le interese indagar aun más sobre este tema puede acceder a la documentación oficial [aquí](http://lesscss.org/)
+
+## Ejemplo de LESS raducido a CSS
+```less
+/*LESS*/
+@width: 20px;
+@height: 10px;
+/*Variables*/
+@color-background: blue;
+
+.body {
+  @color-background: green;
+  background-color: @color-background;
+}
+
+.section1 {
+  background-color: @color-background;
+}
+
+/*Selectores*/
+
+@my-selector1: banner;
+@my-selector2: div;
+
+.@{my-selector1} {
+  margin: 0px;
+}
+
+.@{my-selector2} {
+   border: 1px solid black
+}
+
+/*Atributos*/
+
+@my-atribute: color;
+
+h1 {
+  @{my-atribute}: green;
+}
+
+@image: '../img';
+
+body{
+  background-image: url('@{image}/logo.jpg');
+}
+
+/*Condicional if*/
+
+.otra-clase {
+  margin: if((@width<@height),0px,3px);
+}
+
+/*OperadoresEspeciales*/
+
+.class {
+  width: sqrt(@width);
+  margin: sin(@height);
+  panddig: max(@width,@height);
+}
+
+/*Listas*/
+
+@list: "Peach", "Mario", "Luigi", "Browser";
+
+.another-class {
+  margin: length(@list);
+}
+
+/*Otra definicion de selectores*/
+nav{
+  ol{
+    font-color: red; 
+  }
+  ul{
+    font-color: blue
+  }
+}
+
+/*Using @media*/
+.mediaClass {
+  width: 30px;
+  color: red;
+  @media screen and (max-width: 300px){
+    background-color: black;
+  }
+  @media screen and (max-width: 200px){
+    background-color: pink;
+  }
+}
+
+/*Importar archivos .less al index.less*/
+
+/*Mixens*/
+
+.important-text {
+  color: black;
+  font-size: 30px;
+  font-weigth: 20px;
+}
+
+.important-text-uno {
+  .important-text();
+  background-color: black;
+}
+.important-text-dos {
+  .important-text();
+  background-color: green;
+}
+
+/*Mixens con ardumentos*/
+
+.important-text(@color, @font-size) {
+  color: @color;
+  font-size: @font-size;
+  font-weigth: 20px;
+}
+
+.important-text-uno {
+  .important-text(pink,1px);
+  background-color: black;
+}
+.important-text-dos {
+  .important-text(orange,2px);
+  background-color: green;
+}
+
+.important-text-tres {
+  .important-text(@font-size: 3px, @color: gray);
+  background-color: green;
+}
+
+/*Mixens por default*/
+.important-text-other(@color: blue, @font-size: 3px) {
+  color: @color;
+  font-size: @font-size;
+  font-weigth: 20px;
+}
+
+.important-text-uno {
+  .important-text-other();
+  background-color: black;
+}
+```
+
+```css
+/*CSS*/
+/*Variables*/
+.body {
+  background-color: green;
+}
+.section1 {
+  background-color: blue;
+}
+/*Selectores*/
+.banner {
+  margin: 0px;
+}
+.div {
+  border: 1px solid black;
+}
+/*Atributos*/
+h1 {
+  color: green;
+}
+body {
+  background-image: url('../img/logo.jpg');
+}
+/*Condicional if*/
+.otra-clase {
+  margin: 3px;
+}
+/*OperadoresEspeciales*/
+.class {
+  width: 4.47213595px;
+  margin: -0.54402111;
+  panddig: 20px;
+}
+/*Listas*/
+.another-class {
+  margin: 4;
+}
+/*Otra definicion de selectores*/
+nav ol {
+  font-color: red;
+}
+nav ul {
+  font-color: blue;
+}
+/*Using @media*/
+.mediaClass {
+  width: 30px;
+  color: red;
+}
+@media screen and (max-width: 300px) {
+  .mediaClass {
+    background-color: black;
+  }
+}
+@media screen and (max-width: 200px) {
+  .mediaClass {
+    background-color: pink;
+  }
+}
+/*Importar archivos .less al index.less*/
+/*Mixens*/
+.important-text {
+  color: black;
+  font-size: 30px;
+  font-weigth: 20px;
+}
+.important-text-uno {
+  color: black;
+  font-size: 30px;
+  font-weigth: 20px;
+  background-color: black;
+}
+.important-text-dos {
+  color: black;
+  font-size: 30px;
+  font-weigth: 20px;
+  background-color: green;
+}
+/*Mixens con ardumentos*/
+.important-text-uno {
+  color: pink;
+  font-size: 1px;
+  font-weigth: 20px;
+  background-color: black;
+}
+.important-text-dos {
+  color: orange;
+  font-size: 2px;
+  font-weigth: 20px;
+  background-color: green;
+}
+.important-text-tres {
+  color: gray;
+  font-size: 3px;
+  font-weigth: 20px;
+  background-color: green;
+}
+/*Mixens por default*/
+.important-text-uno {
+  color: blue;
+  font-size: 3px;
+  font-weigth: 20px;
+  background-color: black;
+}
+```
 
 ## Homework
 

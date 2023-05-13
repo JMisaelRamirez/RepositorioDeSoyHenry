@@ -8,7 +8,7 @@ body {
 }
 
 #header {
-  width: 100%; /*El largo de la linea de encabezado*/
+  width: 100%; /*El largo de la caja de contenido*/
   position: absolute; /*Posicion del head*/
   top: 0; /*Distancia de arriba a la linea del head*/
   left: 0; /*istancia desde la izquierda*/

@@ -19,6 +19,23 @@
   </tr>
 </table>
 
+ECMA 6 ES UN ESTANDAR BASADO EN JAVASCRIPT
+
+# **DUDAS**
+# **NOTAS RAPIDAS**
+> Los tipo de elementos primitivos en java script son: number, string, booleand, undefined, null, BigInt, Symbol.
+> Los tipo de datos primitovs son inmutables, osea, que no se reasignan. 
+# **NOTAS**
+## **¿Que es ECMA 6?**
+Es un estandar basado en java script
+## **KeyWor Let y Conts**
+En let, podemos reasignar la variable. 
+const : Nos permite declarar variables inmutables, osea no se puede cambiar. var y let : Nos permiten crear variables mutables que si se puede cambiar. var : Nos permite definir variables al alcanse de su función mas sercana, osea dentro de la función.
+
+## **Que es que JavaScript sea tipado debil y dinamico**
+El tipado debil se refiere a que a una variable con cierto tipo de elemento podriamos cambiar su tipo de elemento. 
+El tipado dinamico se refiere que no es necesario definir el tipo del elemento que asiganaremos a la variable, el que sea un tipado estatico es lo contrario 
+
 # ECMAScript 6
 
 El ES6 ,también conocido como ECMAScript 2015 o ES2015+, es la última versión del standart. Este nuevo update es el primero desde que se estandarizó el lenguaje en 2009. Las implementaciones del nuevo standart todavía se están haciendo para varios motores de JavaScript.

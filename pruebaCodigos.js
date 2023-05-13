@@ -1,24 +1,19 @@
-let numerosDesordenados = [5,4,3,2,1,0,-3,-4]
+// nombres.js
+let names = ['Jenn','Misael','Julio'];
+let alumno = 'Toni';
+let alumna = 'Mati';
+let amountOfStudents = names.length + 1; 
 
-function ordenarNumeros (numeros) {
+exports.alumnoAux = alumno;
+exports.name = function name (number) {return names[number];};
+exports.number = function number (name) {return names.indexOf(name);};
+exports.cantidadDeAlumnos = amountOfStudents;
 
-  for (let i = 0; i < numeros.length; i++) { // i = 0
-    let numeroMin = numeros[i]; // 10
-    let posicionNumeroMinimo;
-        // j =  4   4 < 4           
-    for (j = i + 1; j < numeros.length; j++) { 
-      if (numeros[j] < numeroMin) { // 7 < 8
-        numeroMin = numeros[j]; // 
-        numeros[j] = numeros[i]
-        numeros[i] = numeroMin;
-      }
-
-    }
-
-
-  }
-  return numeros
-}
-
-let numerosOrdenados = ordenarNumeros(numerosDesordenados);
-console.log(numerosOrdenados)
+// Exports es un objeto.
+// exports {
+//          alumnoAux: alumno, 
+//          name: function, 
+//          number: function,
+//          cantidadDeAlumnos: names.length + 1
+//         }
+ 

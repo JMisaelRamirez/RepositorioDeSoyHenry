@@ -153,6 +153,9 @@ button.addEventListener('click', addToDo);
 function completeToDo(event) {
   // DESCOMENTAR LA SIGUIENTE LINEA
    const index = event.target.id;
+  // event -> click
+  // event.target -> span
+  // event.target.id -> index
   // Tu código acá:
   toDoItems[index].completeToDo();
   displayToDos();
