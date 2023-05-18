@@ -22,10 +22,32 @@
 # **Módulos y Bundlers**
 # DUDAS
 # NOTAS RAPIDAS
-> .indexOf() -> 
+> .indexOf() -> Muestra el indice donde se encuentra el valor indicado dentro de un arreglo. 
+
+> `commondJS` -> Se dentro de Node.JS engine y `ES Modules` -> Se utiliza para web engine
+
+>IIFE -> Inmitialy Invoked Function Enviroment. 
 # NOTAS
 ## **Que es un modulo**
 Un modulo puede ser una funcion. Un modulo puede ser una funcion que manda a llamar cinco funciones mas, o modulos. Un modulo busca solucionar una tarea en especifica. 
+
+## **¿Cuando utilizar un modulo?**
+Cuando agregamos 2 o mas archivos .js al archivo index.html por medio de la etiqueta script, las variables establecidad en cada archivo se estableceran en el contexto global. Esto quiere decir que podremos utilizar esas variables dentro de esos mismos archivos .js dependiendo del orden en la que se inserten los archivos. 
+Cuando queramos crear proyectos mas grandes abra logica o variables que quisieramos ocultar o no querer manipular por lo que haremos uso de los modulos. Al paso del tiempo se crearon modulos como los `commondJS`. Este estandar hacia todo el proceso de importacion e exportacion detras, solo se requiere importar un archivo .js al .html. Mas adelante se establecio `ES Modules` el cual se utiliza export e import.
+`commondJS` -> Se dentro de Node.JS engine y `ES Modules` -> Se utiliza para web engine. 
+
+## **JavaScript vs NodeJS**
+JavaScript: 
+1. Is a programm language.
+2. All browsers have a JavaScript engine that helps us run JavaScript in a web Browser.
+3. Window object
+4. In the browser, we use ES Modules.
+
+NodeJS:
+1. Node.js is a runtime environment for JavaScript. 
+2. Uses V8 engine directly. This helps run JavaScript outside of the browser.
+3. Global Object (Missing web Plataform API, DOM)
+4. Node.js Uses the command.js module system. 
 
 ## **¿Reglas para utilizar los modulos?**
 
@@ -57,8 +79,7 @@ let saludo = "hola";
 La siguiente imagen muestra la forma de solicitar y permitir informacion. import -> solicitar (requierd), importacion. module.exports -> exportar, permitir 
 ![dependencias](../_src/assets/05-Bundlers/dependencias.png)
 
-## **patron de modulos IIFE**
-## **CommonJS, como usar export. y require('')**
+## **Sistema Modular commondJS Exports**
 ```javascript
 // nombres.js
 let names = ['Jenn','Misael','Julio'];
@@ -96,11 +117,77 @@ console.log(a.name) // >> function: name
 console.log(a.name(1)) // >> 'Misael'
 console.log(a.number('Jenn')) // 0
 ```
-## **module.export vs esports**
+## **module.export vs exports**
 Con module.export podemos agregar cada elemento al objeto export de la siguiente manera: 
-```javascrit
+```javascript
+/// module1.js
+module.exports.a = function () {
+  console.log('a');
+}
 
+module.exports.b = function () {
+  console.log('b');
+}
+// Tambien otra manera de exportar las funciones es la siguiente. 
+/* 
+let a = function () {
+  console.log('a');
+}
+let b = function () {
+  console.log('b');
+}
+module.exports = {a, b}
+*/
+
+//module2.js
+let example = require('./pruebaCodigos.js');
+example.a();
+example.b();
 ```   
+
+## **Module system ES Modules**
+Como se menciono anteriormente, ES modules se utiliza en Engine del Browser. Por lo que no se podra utilizar los import y export en un protocologo file, esto es asi por que los modulos siempre vas asumir que se estan sirviendo atravez de internet, atravez dela web, entonces, este nos dice: Si lo estas sirviendo atravez de la web tienes que servirlo atravez del mismo dominio, osea un dominio basico. Por lo tanto tendriamos que crear un servidor web, cuando trabajamos con los frameworks react este crea un servidores web, local host 3000 y esos. Pero al no usar estos framewroks y al requerir un servidor web utilizamos una extension llamada `Live Server`. una vez echo esto se muestra un ejemplo: 
+```javascript
+// math.js
+export let nums = [1, 2, 3, 4, 5]
+export let num1 = 3.4; 
+export let saludo = 'Hola';
+
+export let sumar = (x, y) => {
+  return x + y;
+}
+
+export function saludar() {
+  console.log("Hola mundo");
+}
+
+//  PARA UTILIZAR ESTE DEFAULT ES NECESARIO IMPORTARLO DE LA MANERA QUE SE MENCIONA EN EL index.js
+export default function resta(x, y) {
+  return x - y;
+}
+
+// index.js
+// import {nums, saludar, num1, saludo, sumar as otroSumar} from './math.js' // En los corchetes se define lo que queremos importar
+// PARA IMPORTAR POR DEFAULT SE HACE ASI:
+import resta from './math.js'
+let sumar = (x, y) => {
+  return x + y;
+}
+
+console.log(nums);
+console.log(num1);
+console.log(saludo);
+console.log(saludar);
+console.log(otroSumar(2,3))
+console.log(sumar(2,3))
+
+// HTMl Structure
+// ES IMPORTANTE AGREGAR EL type="module"
+<body>
+  <script src="./index.js" type="module"></script> 
+</body>
+```
+
 
 # APUNTE
 
@@ -121,7 +208,7 @@ Estos módulos proveen una interfaz de contacto hacia afuera, es decir que todo 
 
 Es muy similar a cuando interactuamos con un objeto, como un `Array` y usamos sus métodos:
 
-```js
+```javascript
     var arreglo = [];
     arreglo.push(1);
 ```

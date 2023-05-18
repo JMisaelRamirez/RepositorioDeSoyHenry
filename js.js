@@ -1,15 +1,16 @@
-// index.js
-let a = require('./pruebaCodigos');
-// con la funcion require('') solicitamos los elementos disponibles
-// del archivo pruebaCodido.js. El valor es un objeto, por lo tanto ->
-// a {
-//      alumnoAux: alumno, 
-//      name: function, 
-//      number: function,
-//      cantidadDeAlumnos: names.length + 1
-//   }
+export let nums = [1, 2, 3, 4, 5]
+export let num1 = 3.4; 
+export let saludo = 'Hola';
 
-console.log(a.alumnoAux) // >> 'Toni'
-console.log(a.name) // >> function: name
-console.log(a.name(1)) // >> 'Misael'
-console.log(a.number('Jenn')) // 0
+export let sumar = (x, y) => {
+  return x + y;
+}
+
+export function saludar() {
+  console.log("Hola mundo");
+}
+
+//  PARA UTILIZAR ESTE DEFAULT ES NECESARIO IMPORTARLO DE LA MANERA QUE SE MENCIONA EN EL index.js
+export default function resta(x, y) {
+  return x - y;
+}
