@@ -1,7 +1,13 @@
-(function () {
+// 1. Primero comentaremos las IIFE's
+//(function () {
 
-  var whiteboard = window.whiteboard;
-  var socket = window.io(window.location.origin);
+  //2. 
+  // var whiteboard = window.whiteboard; // white board 
+  // var socket = window.io(window.location.origin);
+  var whiteboard = require('./whiteboard');
+  var io = require('socket.io-client');
+  var socket = io(window.location.origin)
+
 
   socket.on('connect', function () {
     console.log('Connected!');
@@ -26,4 +32,4 @@
     socket.emit('draw', start, end, color);
   });
 
-})();
+//})();

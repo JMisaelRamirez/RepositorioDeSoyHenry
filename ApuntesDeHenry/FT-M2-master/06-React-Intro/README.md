@@ -20,7 +20,379 @@
 </table>
 
 # REACT
+## **DUDAS**
+> Por que no jala babel con Live Server
+> Que hace setInterval(tick,1000);
+> COmo funciona {new Date().toLocaleTimeString()}
+> Que es la etiqueta svg?
+> Como trabaja WebPack
+> "build": "webpack -w"
+> Que es -> import data, { Cairns } from './data.js';
+> import './app.css'
+> Que es export const Londres = JSON.parse()
 
+
+## **NOTAS RAPIDAS**
+> React -> Sirve para crear interfaces de usuarios. 
+
+> React -> Es una libreria de javascript declarativa. 
+
+> React -> Nos ayuda a crear componentes. Se podria decir que son templates.
+
+> Imperativo -> Como tenemos que resolver las cosas. 
+
+> Declarativo -> Que queremos que se haga.
+
+> React -> Declara el concepto de un DOM virtual.
+
+> Recat -> Trabaja con el prinipio de resonsabilidad unica (single responsability principle)
+
+> Render -> proceso de generar y mostrar la interfaz de usuario en base a los datos y la lógica de la aplicación.
+
+> render() -> React compara el árbol de elementos generado con la versión anterior de la interfaz.
+
+> Reconciliacion -> Es un algoritmo eficiente. React determina las diferencias entre los dos árboles y actualiza solo los componentes o elementos que han cambiado. El algoritmo de reconciliacion es utilizado por render().
+
+> React -> compara el Virtual DOM recién generado con la versión anterior del Virtual DOM. Posteriormente solo agrega las modificaciones al DOM real. 
+
+> Renderizado -> proceso del motor React que recorre el DOM virtual y recopila el estado actual, los accesorios, la estructura, los cambios deseados en la interfaz de usuario, etc
+
+> Crear Un elemento -> let element = React.createElement(h1,null,Hola Mundo) o usando Babel, let element = `<h1>Hello Worl</h1>`
+
+> Se tiene solo un React Dom por aplicacion. 
+
+> Atibuto en html: `<script crossorigin></script>` -> El atributo crossorigin se utiliza en elementos HTML, como las etiquetas `<img>`, `<script>`, `<link>`, y `<video>`, para especificar cómo se deben manejar las solicitudes de recursos que se hacen a dominios diferentes al dominio actual.
+
+> {} -> Cuando utilizamos {} dentro del contenido de una etiqueta o en su atributo hacemos referencia a utilizar codigo javascript dentro de las llaves. 
+
+> let elements = (
+  `<div><div>`
+)
+> Como se llama un componente -> ReactDOM(`<Componente atributo={}/>`, document.selectElementById(''))
+
+> Propiedad key -> la propiedad key se utiliza para ayudar a React a identificar elementos de manera única en una lista de elementos generados dinámicamente
+
+> Distractory -> Descomponer un objeto o array en varias variables. Ejem: let {saludo, despedida, numero} = ["hola", "Adios", 455]
+> Los returns de los componentes solo pueden devolver un elemento padre. Si se puede devolver un elemento padre con varios hijos. 
+
+> Eventos -> Es por ejemplo oneClick=('')
+
+>Configuracion de webpack -> Se puede realizar a mano o por medio de npmx creatReactApp no se tiene que configurar nada a mano, tendra instalado webpack a su modo no se puede personalizar como hacerlo a mano. 
+
+> Componentes puros o funcionales -> No tienen estado solo reciben datos por props. 
+
+## **NOTAS**
+## ¿Como trabaja React?
+React sigue una serie de pasos para su funcionamiento. A continuación, se presentan los pasos clave en el ciclo de vida de React:
+
+1. Definición de componentes: Se definen los componentes de React, que son bloques de construcción reutilizables para la interfaz de usuario. Los componentes pueden ser funcionales (funciones) o basados en clases (clases que extienden la clase Component de React).
+
+2. Renderización inicial: Cuando se utiliza un componente de React en la aplicación y se lo monta en el DOM, se inicia el proceso de renderización. Se invoca el método render() del componente y se genera un árbol de elementos React (también conocido como Virtual DOM).
+
+3. Comparación del Virtual DOM: React compara el Virtual DOM recién generado con la versión anterior del Virtual DOM. Esto se hace utilizando un algoritmo eficiente de reconciliación que busca las diferencias entre los dos árboles.
+
+4. Actualización del DOM: Basándose en las diferencias encontradas en el paso anterior, React actualiza solo los componentes o elementos que han cambiado en el Virtual DOM. Esto minimiza las operaciones costosas en el DOM real.
+
+5. Manejo de eventos: React maneja los eventos de manera eficiente. Utiliza un sistema de eventos sintético para gestionar eventos de forma consistente en diferentes navegadores. Los eventos se propagan desde el elemento raíz hacia abajo en la jerarquía de componentes.
+
+6. Actualización del estado: Los componentes de React pueden tener un estado interno que determina cómo se ve y se comporta la interfaz de usuario. Cuando un componente cambia su estado mediante la invocación del método setState(), React realiza una nueva renderización y actualiza el DOM en consecuencia.
+
+7. Desmontaje del componente: Cuando un componente se retira del DOM, se invoca el método componentWillUnmount() (si es un componente basado en clase) o se limpian los efectos (si es un componente funcional con Hooks). Esto permite al componente realizar tareas de limpieza antes de ser eliminado.
+
+## Partes de un componente de React
+1. Importaciones: Al comienzo de tu archivo de componente, necesitas importar las dependencias necesarias. Esto incluye React en sí mismo y cualquier otro módulo o biblioteca externa que desees utilizar.
+
+```jsx
+import React from 'react';
+// importar otros módulos o bibliotecas aquí si es necesario
+```
+
+2. Declaración del componente: Debes declarar tu componente como una función o una clase. La mayoría de las veces, se utiliza una función en estos días, ya que es más sencilla y concisa. Puedes utilizar la sintaxis de función o la sintaxis de arrow function.
+
+```jsx
+function MiComponente() {
+  // cuerpo del componente
+  return (
+    // contenido JSX que se renderizará
+  );
+}
+```
+3. Estado del componente: Si tu componente necesita mantener un estado interno, puedes utilizar el hook useState para declarar y administrar el estado. Esto te permite almacenar y actualizar datos en el componente.
+```jsx
+import React, { useState } from 'react';
+
+function MiComponente() {
+  const [estado, setEstado] = useState(initialState);
+
+  // otras funciones y lógica del componente
+
+  return (
+    // contenido JSX que se renderizará
+  );
+}
+```
+
+4. Props: Los componentes pueden recibir datos externos llamados "props" (propiedades) que se pasan desde el componente padre. Puedes acceder a estos datos dentro de tu componente para utilizarlos en el renderizado o en la lógica.
+```jsx
+function MiComponente(props) {
+  // Acceso a las props
+  const { prop1, prop2 } = props;
+
+  // otras funciones y lógica del componente
+
+  return (
+    // contenido JSX que se renderizará
+  );
+}
+```
+5. Renderizado JSX: El cuerpo del componente contiene el contenido JSX que se renderizará en el navegador. Puedes utilizar etiquetas HTML-like (pero en realidad son elementos React) para construir la estructura de tu interfaz de usuario.
+```jsx
+function MiComponente(props) {
+  return (
+    <div>
+      <h1>Título</h1>
+      <p>{props.texto}</p>
+    </div>
+  );
+}
+```
+Estas son las partes básicas de un componente en React. Puedes expandir esta estructura básica agregando más lógica, efectos, métodos de ciclo de vida y estilos según sea necesario para tu aplicación.
+## ¿Como crear un elemento en react?
+![CrearUnElemento](../_src/assets/06-React-Intro/sintaxysReact.JPG)
+
+## ¿Formas de utilizar React?
+1. Forma sencilla ![CrearUnElemento](../_src/assets/06-React-Intro/forma1.JPG) 
+
+**Hola Mundo:** 
+```jsx
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        function nombreCompleto(usuario) {
+             return `${usuario.nombre} ${usuario.apellidos}`;
+         }
+         const usuario = {
+             nombre: 'Misael',
+             apellidos: 'Ramirez Cortes'
+         };
+        const clase = 'clase-de-css';
+        const h1 = <h1 className={clase}>Hola, {nombreCompleto(usuario)}</h1>;
+        ReactDOM.render(h1, document.getElementById('root'));
+    </script>
+</body>
+</html>
+```
+
+2. Forma 2: WebPack
+
+## Virtual DOM
+Como se menciono en las notas rapidas. El virtual DOM se compara con el Virtual DOM anterior y genera cambios unicamente en la estructura modificada del Virtual DOM. 
+Comparamos una comparacion de codear con REACT vs DOM and APIs del DOM
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        function tick () {
+            const div = document.createElement("div");
+            const h1 = document.createElement("h1");
+            const h2 = document.createElement("h2");
+            h1.innerText = "¿Que hora es?";
+            h2.innerText = `Son las: ${new Date().toLocaleTimeString()}`;
+            div.appendChild(h1);
+            div.appendChild(h2);
+            const root = document.getElementById('root');
+            root.innerHTML = div.innerHTML
+        }
+        setInterval(tick,1000)
+        
+    </script>
+</body>
+</html>
+```
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        function tick(){
+          const element = (
+            <div>
+              <h1>¿Que hora es?</h1>
+              <h2>Son las: {new Date().toLocaleTimeString()}</h2>
+            </div>
+          );
+          ReactDOM.render(element, document.getElementById('root'))
+        }
+        setInterval(tick,1000);
+    </script>
+</body>
+</html>
+```
+
+## Creado componentes
+**Funcionales**
+1. Los componente se crean con una funcion y siempre tienen su nombre empezando con mayusculas. 
+2. Dentro de la funcion siempre tendra un return con la estructura html del componente. 
+3. Tambien podriamos recibir props (es un objeto recibido) -> propiedad. 
+4. Se puede hacer furcacion de las props
+5. El elemento se utiliza llamandolo como si fuera html -> `<Componente />`
+
+Creacion de un componente:
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        let alumnos = [
+            {
+                firstName: "Misael",
+                lastName: "Ramirez",
+                id: 0
+            }, 
+            {
+                firstName: "Eduardo",
+                lastName: "Cortes",
+                id: 1
+            }, 
+            {
+                firstName: "Eliot",
+                lastName: "Ramirez",
+                id: 2
+            }
+        ]
+
+        function Bienvenida(props) {
+            return (
+                <h2>Hola, {props.firstName} {props.lastName}</h2>
+            )
+        }
+
+        function Container() {
+            return (
+                <div>
+                    {alumnos.map(e => 
+                        <Bienvenida firstName={e.firstName} lastName={e.lastName} key={e.id}/>
+                    )}
+                </div>
+            )
+        }
+        ReactDOM.render(<Container />, document.getElementById("root"))
+    </script>
+</body>
+</html>
+```
+**Clase**
+```jsx
+// Esto:
+function Bienvenida(props) {
+  return (
+      <h2>Hola, {props.firstName} {props.lastName}</h2>
+  )
+}
+
+// Es igual a esto:
+class Bienvenida {
+  render() {
+    return <h2>Hola, {this.props.firstName} {this.props.lastName}</h2>
+  }
+}
+
+// Nota: para un componente simple no se requiere constructor, por ahora.
+```
+## Union de WEBPACK con BABEL
+Nos permitira modularizar nuestro codigo jsx a un solo codigo js.
+### **Configuracion.**
+
+## Propiedad key en REACT
+
+En React, la propiedad key se utiliza para ayudar a React a identificar elementos de manera única en una lista de elementos generados dinámicamente. La propiedad key se asigna a los elementos dentro de un bucle, como en un map(), y debe ser un identificador único para cada elemento en la lista.
+
+Es importante destacar que las claves deben ser únicas solo entre los elementos hermanos de la lista. No necesitan ser únicas globalmente en la aplicación. React no utiliza las claves para ordenar los elementos de la lista, sino para identificarlos de manera única.
+```jsx
+function MiComponente() {
+  const elementos = ['A', 'B', 'C'];
+
+  return (
+    <ul>
+      {elementos.map((elemento) => (
+        <li key={elemento}>{elemento}</li>
+      ))}
+    </ul>
+  );
+}
+```
+## Trabajar con React por medio de Modulizacion. 
+1. Creamos una carpeta demo
+2. Dentro de demo, creamos una carpeta demo-webpack.
+3. Dentro de demo-webpack, ejecutamos npm init dentro de la consola. Se generara un archivo package.json.
+4. Asemos la instalacion de webpack and webpack-cli -> npm i -D webpack webpack-cli. Se Crea el objeto devDependencies dentro del archivo package.json. Asi tambien, se crea una carpeta node_modules y un archivp package.json
+5. Instalamos React -> npm i react react-dom  . Se agrega devDependecies a package.json. 
+6. Instalamos babel y sus dependencias -> npm i -D @babel/core @babel/preset-env @babel/preset-react babel-loader
+7. Nota: El babel-loader se podria ingresar de la siguiente manera si es que nos arroja errores: npm install babel-loader --save-dev
+8. Ahora tenemos que construir el archivos de configuración de webpack en la carpeta demo-webpack, para que funcione con `babel`. Básicamente tenemos que transformar el código que usa EcmaScript6 y JSX a JS plano.
+
+```javascript
+// webpack.config.js
+
+module.exports = {
+  entry: [
+    './app/index.js'
+  ],
+  output: {
+    path: __dirname + '/dist',
+    filename: 'bundle.js'
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-react', '@babel/preset-env']
+          }
+        }
+      }
+    ]
+  }
+}
+```
+
+9. Creamos la carpeta dir en  demo-webpack
+10. Creamo un archivo app.js en la carppeta demo-webpack.
+11. Creamos un archivo index.html en la carpeta dir. 
+12. Creamos el contenido de app.js 
+13. Aqui se muestra una imagen ilustrativa de los comando utilizados en npm:
+![InstalacionDeWebPackConBabel](../_src/assets/06-React-Intro/InstalacionDeWebPackConBabel.JPG)
+
+## **APUNTE**
 ## Qué es React?
 
 React es una librería de JavaScript que es declarativa, eficiente y flexible y sirve para construir interfaces de usuarios. Esta librería fue creada por el equipo de _facebook_ e _instagram_, que fue liberada y ahora es un proyecto __open source__.
@@ -59,9 +431,9 @@ Para el segundo punto, React construye una representación del DOM en memoria y 
 
 ### Component Driven Development
 
-Miremos la imagen de abajo, cada cajita con un color particular representa un componente. Esta es una de las muchas formas de poder dividir un solo elemento o feature de nuestro sitio. Según esta división tendríamos la jerarquía de componentes que se muestran a la derecha de la imagen:
+Miremos la imagen de abajo, cada cajita con un color particular representa un componente. Esta es una de las muchas formas de poder dividir un solo elemento o feature de nuestro sitio. Según esta división tendríamos la jerarquía de componentes que se muestran a la derecha de la imagen (cada componente tiene una resonsabilidad):
 
-![componentes](/_src/assets/06-React-Intro/react_component_hierarchy.png)
+![componentes](../_src/assets/06-React-Intro/react_component_hierarchy.png)
 
 ##### Qué debería contener un _Componente_?
 
@@ -335,7 +707,7 @@ Para poder ejecutar webpack, debemos agregar dentro de `scripts` en nuestro `pac
 
 Para probar si todo funciona bien, iremos a la carpeta donde tenemos definidos todos estos archivos, y vamos a escribir `npm run build`.
 
-![Webpack](/_src/assets/06-React-Intro/webpack.png)
+![Webpack](../_src/assets/06-React-Intro/webpack.png)
 
 Si todo funcionó bien, veremos un mensaje como el de la imagen! Y además encontraremos un archivo nuevo en la carpeta `dist`.
 

@@ -225,7 +225,7 @@ var foo = "no sweat"; // no tiene idea que usamos el mismo nombre para una varia
 someFunc(); // 42
 ```
 
-Salirse del browser permitió a Node implementar un sistema de módulos en JS, basado en un sistema propuesto por ![CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1.1), que ayudo a elevar a JavaScript a ser un "lenguaje de programación real" en los ojos de muchos.
+Salirse del browser permitió a Node implementar un sistema de módulos en JS, basado en un sistema propuesto por [CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1.1), que ayudo a elevar a JavaScript a ser un "lenguaje de programación real" en los ojos de muchos.
 
 Sin embargo, solo JavaScript del lado del servidor puede usar `require` y `module.exports` - JavaScript escrito en browsers todavía era renegado a los riesgos y fragilidades de tags `<scripts>`. Sin embargo, ahora que hemos experimentado modularidad real con Node, nos debemos preguntar - ¿podemos implementar un sistema de módulos real para JavaScript desde browser también? ¿Hay una herramienta que podamos crear para que podamos esencialmente usar `require` y `module.exports` en nuestro Javascript para el browser también?
 
@@ -435,7 +435,7 @@ Eso, mi amigo, es la sintaxis de módulos ECMAScript, introducida en ES6.
 
 Permitime explicar - luego de que Node popularizó el uso de `require` y `module.exports`, los mantenedores de la especificación de ECMAScript reconocieron la necesidad de un sistema de módulos nativo en JavaScript. Sin embargo, en vez de basar este nuevo sistema en la popular sintaxis de Node, la especificación aprobó una sintaxis diferente usando keywords como `import` y `export` - el cual es mucho más similar a la sintaxis que usa Java.
 
-Para muchos, esto fue una decepción. Para otros, fue una victoria para ![análisis estático](https://en.wikipedia.org/wiki/Static_program_analysis) (el cual es imposible con la sintaxis de Node). Pero no nos detengamos en política - el sistema import/export es ahora parte del estándar de ECMAScript, y a pesar que no este aún soportado por ningún browser o por Node, va a eventualmente recibir soporte nativo en todos esos ambientes.
+Para muchos, esto fue una decepción. Para otros, fue una victoria para [análisis estático](https://en.wikipedia.org/wiki/Static_program_analysis) (el cual es imposible con la sintaxis de Node). Pero no nos detengamos en política - el sistema import/export es ahora parte del estándar de ECMAScript, y a pesar que no este aún soportado por ningún browser o por Node, va a eventualmente recibir soporte nativo en todos esos ambientes.
 
 Afortunadamente para nosotros, Webpack está aquí para salvar el día! Webpack reconoce y soporta AMBOS `require`/`module.exports` y`import`/`export`! (Aunque en cualquier proyecto, deberías elegir usar uno o el otro - mezclar los dos va a ser el código difícil de entender y puede de hecho resultar en errores dado que Webpack tiene la habilidad de realizar optimizaciones extra en el código usando `import/export`).
 

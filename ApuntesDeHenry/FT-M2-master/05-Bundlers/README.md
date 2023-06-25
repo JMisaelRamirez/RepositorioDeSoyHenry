@@ -21,12 +21,53 @@
 
 # **Módulos y Bundlers**
 # DUDAS
+> _dirname -> ¿Que es?
+
+> Que es el node_modules.
+
+> Que es el npm install -D webpack-cli
+
+> La palabra reservada new solo aplica a clases y objetos?
+
+> package -lock.json
+
 # NOTAS RAPIDAS
 > .indexOf() -> Muestra el indice donde se encuentra el valor indicado dentro de un arreglo. 
 
-> `commondJS` -> Se dentro de Node.JS engine y `ES Modules` -> Se utiliza para web engine
+> `commondJS` -> Se dentro de Node.JS engine (backend) y `ES Modules` -> Se utiliza para web engine (frontend)
+
+>Exports es solamente un atajo de module.exports
 
 >IIFE -> Inmitialy Invoked Function Enviroment. 
+
+> Distractory -> import {} from 'url' , {} <- esto es el distractoryn
+
+> build tool -> Herrramienta de desarrolo como webpack, npm , etc
+
+> Transpilador -> convierte un lenguaje de alto nivel a otro lenguaje de alto nivel como webpack 
+
+> npm -> npm responde a las siglas de Node Package Manager o manejador de paquetes de node, es la herramienta por defecto de JavaScript para la tarea de compartir e instalar paquetes. Viene incluido y ayuda a cada desarrollo asociado a Node
+
+> node.js -> Node. js es un entorno de ejecución JavaScript de código abierto y multiplataforma que se utiliza para desarrollar aplicaciones escalables del lado del servidor y de red. Está basado en el motor de ejecución JavaScript V8 de Google Chrome.
+
+> WebPack -> Webpack (un modulo de Node.js) toma nuestros archivos JavaScript y produce un solo, archivo JavaScript transformado (es un transpilador) ![transpilador](../_src/assets/05-Bundlers/transpilador.png)
+
+> lógica de módulos muy sofisticada -> El archivo creado por webpack.
+
+> 1. Inicicamos npm (Web Tool) -> npm init //Esto crea un archivo package.json
+>2. Instalamos WebPACK (Web Tool - transpilador) por medio de npm (tool) -> npm install --save-dev webpack. Se crea archivo package.json
+>3. Agregamos shortcuts dentro del archivo package.json - > "script": {"start": "node serve.js", "build": "webpack"}     //Al ejecutar npm run build se ejecuta el archivo build.js.
+>4. Creamos el directorio (dist) donde se guardara el archivo obtenido por WEBPACK (tranpilador).
+>5. Creamos un archivo webpack.config.js -> Debe de tener la siguinte configuracion: ![webpack.config.js](../_src/assets/05-Bundlers/5.JPG)
+>6. Lor archivos .js  a tranpilar se sugieren guardar en una carpeta llamada src.  
+>7. Creamos el archivo bundle.js -> ejecutamos npm run build
+>8. Insertar el archivo bundle.js a HTML -> <script src="./dist/bundle.js"" type="text/javascript"></script>
+
+> Bundlers -> Un bundler es una herramienta que combina y optimiza archivos de código fuente y recursos en un solo archivo para su implementación en una aplicación web.
+
+> Cuando el path no es aclarado dentro del parametro de require, automaticamente el ineprete buscara en la carpeta `node_modules`.
+
+>Cada vez que vea un windows en un require en conceptos de modulacion. 
 # NOTAS
 ## **Que es un modulo**
 Un modulo puede ser una funcion. Un modulo puede ser una funcion que manda a llamar cinco funciones mas, o modulos. Un modulo busca solucionar una tarea en especifica. 
@@ -167,11 +208,11 @@ export default function resta(x, y) {
 }
 
 // index.js
-// import {nums, saludar, num1, saludo, sumar as otroSumar} from './math.js' // En los corchetes se define lo que queremos importar
-// PARA IMPORTAR POR DEFAULT SE HACE ASI:
-import resta from './math.js'
-let sumar = (x, y) => {
-  return x + y;
+import {nums, saludar, num1, saludo, sumar as otroSumar} from './math.js' // En los corchetes se define lo que queremos importar
+// PARA IMPORTAR POR DEFAULT SE HACE ASI:  ---
+// import resta from './math.js' ----------- |
+let sumar = (x, y) => {                     
+  return x + y;                         
 }
 
 console.log(nums);
@@ -179,7 +220,8 @@ console.log(num1);
 console.log(saludo);
 console.log(saludar);
 console.log(otroSumar(2,3))
-console.log(sumar(2,3))
+console.log(sumar(10,5))
+// console.log(resta(10,5))
 
 // HTMl Structure
 // ES IMPORTANTE AGREGAR EL type="module"
@@ -187,8 +229,58 @@ console.log(sumar(2,3))
   <script src="./index.js" type="module"></script> 
 </body>
 ```
+## **¿Cual es la diferencia de module.exports vs exports?**
+En principio, ambos apuntan al mismo objeto -vacío-. Esto significa que si utilizamos module.exports.hola = "hola" seguido de un exports.mundo = `mundo`, exportaremos el siguiente objeto:
+```javascript
+>> {hola: "hola", mundo: "mundo"}
+```
+Sin embargo, hay cosas que no podemos hacer. Por ejemplo, podemos asignar un objeto a module.exports de la siguiente manera:
+```javascript
+module.exports = { hola: "hola", mundo: "mundo" }
+```
+Pero, ¿y si hacemos lo mismo con exports?:
+```javascript
+exports = { hola: "hola", mundo: "mundo" }
+```
+Cuando intentamos acceder a alguna de sus propiedades, nos devolverá undefined. Y es que, si pedimos que nos muestre el objeto exportado descubriremos que está vacío {}. 😱😱😱
 
+¿Por qué pasa esto? `Resulta que exports es solamente un atajo`.
 
+¿Recuerdas que empezamos diciendo que ambos apuntan al mismo objeto vacío? No es técnicamente cierto. En realidad module.exports es quien apunta al objeto, mientras que exports apunta a module.exports. Éste funciona entonces como un puente entre exports y el objeto que queremos exportar.
+
+![exports - moduleexports](../_src/assets/05-Bundlers/exportsAndModuleExports.JPG)
+
+## **Que es un WEBPACK**
+Webpack es un empaquetador de módulos, es decir, te permite generar un archivo único con todos aquellos módulos que necesita tu aplicación para funcionar. Para darte una idea, te permite incluir todos tus archivos javascript . js en un único archivo, incluso se pueden incluir hasta archivos de estilos .
+
+Webpack es una herramienta extremadamente poderosa y flexible para construir Javascript, y sus características van mas allá de las cuales tomamos ventaja hoy. Igual, primero, te estarás preguntando... ¿qué es Webpack?
+
+Webpack es un módulo de Node que podes instalar usando npm. Si recordás usando el compilador node-sass de Shoestring para compilar (o, más apropiadamente "transpilar" - ver la nota debajo) nuestros archivos SCSS a un solo archivo CSS - Webpack es como eso!
+
+Webpack toma nuestros archivos JavaScript y produce un solo, archivo JavaScript transformado. De la misma forma node-sass puede reconocer características SCSS (como nesting y @import) y formatear el archivo CSS saliente apropiadamente, Webpack puede reconocerlo cuando tu Javascript usa require y module.exports, y va transformar el archivo Javascript resultante apropiadamente también. Wow!
+
+## **Como configurar un Web Pack**
+1. Creamos un directorio para crear un proyecto de WEBPACK. Creamos la carpeta. 
+1. Creamoe el archivo package.json. Desde la consola en la direccion del derictorio ingresamos `npm init`. Nota: Con npm init -> se configura el .json de forma manual y con `npm init -y` se configura dado si a todo. 
+2. Abrimos el package.json.Se vera como acontinuacion: 
+![creacionDel.json](../_src/assets/05-Bundlers/2.1.JPG)
+3. AHora, en este ejemplo, crearemos la dependencia el el package.json del WEBPACK. Para esto, configuramos la dependencia para WEBPACK por medio del siguiente comando: `npm install --save-dev webpack webpack-cli`(El comando se obtiene de npmjs.com). Damos enter y dejamos que se instale la dependencia webpack. Se obtiene lo siguiente en el archivo package.json:
+![DependenciaWebpack](../_src/assets/05-Bundlers/2.JPG)
+4. Ahora definimos los scripts para start, run build, test, etc. Eliminaremos el script test y agregaremos el start y build: 
+![Agregamos los scripts](../_src/assets/05-Bundlers/4.JPG) 
+5. Crear un archivo de configuracion `webpack.config.js`. Esto lo hacemos creando directamnete este archivo tal cual, y agregar el siguiente texto en su contenido: 
+![webpack.config.js](../_src/assets/05-Bundlers/5.JPG)
+En este config se indica que archivo ira a leer, y donde tiene que alojar la salida, osea el archivo blunder.js generado.El main.js es el archivo que leera primero, el archivo central de todos los modulos, se puede observar que se encuentra dentro de una carpeta src. y se establece el destino del archivo bundle.js dentro de una carpera dist.  
+6. Ahora, generamos el webpack. Para ver el ejemplo, agregamos contenido en main.js y creamos otro archivo counter.js en la carpeta src para ver como se genera un solo archivo para importar en html: Esto es lo que se agrego en el contenido:
+![main.js](../_src/assets/05-Bundlers/main.JPG)
+![counter.js](../_src/assets/05-Bundlers/counter.JPG)
+7. El archivo bundle.js se ve asi: 
+![bundler](../_src/assets/05-Bundlers/bundler.JPG)
+8. Por ultimo importamos el archivo generado en html: 
+![importToHTML](../_src/assets/05-Bundlers/importToHTML.JPG)
+
+## **¿Que es un local Host?**
+Un servidor web local es aquel servidor instalado en un equipo determinado con el fin de trabajar offline y online. Es una alternativa especialmente útil si lo que buscamos es un entorno en el que desarrollar un sitio web o una aplicación y que nos permita realizar todo tipo de pruebas sin correr riesgos.
 # APUNTE
 
 Cuando desarrollamos, queremos que la estructura de nuestro programa/codigo sea lo mas transparente posible, facil de explicar y que cada parte cumpla una tarea definida.
